@@ -1,0 +1,208 @@
+﻿@model AustinWeinman.Models.Agreementofsale
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Agreementofsale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LengthofInitialDDPeriod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LengthofInitialDDPeriod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lengthofextention)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lengthofextention)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numberofextension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numberofextension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extensioncost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extensioncost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchasePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchasePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EscrowCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EscrowCompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titlecompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titlecompany)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOSEffectiveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOSEffectiveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NextPayment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NextPayment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension1DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension1DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension2DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension2DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension3DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension3DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension4DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension4DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension5DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension5DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension6DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension6DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension7DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension7DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension8DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension8DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension9DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension9DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension10DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension10DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension11DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension11DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension12DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension12DueDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

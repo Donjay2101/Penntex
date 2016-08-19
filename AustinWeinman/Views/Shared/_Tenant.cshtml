@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<AustinWeinman.Models.Tenant>
+@using GridMvc.Html
+
+
+<div>
+    <a href="/Tenants/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
+</div>
+
+@Html.Grid(Model).Columns(columns =>
+{
+  columns.Add()
+              .Encoded(false)
+              .Sanitized(false)
+              .SetWidth(30)
+              .Css("hidden-xs") //hide on phones
+              .RenderValueAs(c =>
+                @<div id="balloon" class="balloonClass">
+                    <b>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = c.ID }, new { @class = "modal_link", @Id = "editlink" })*@
+                        <a href="/Tenants/edit?id=@c.ID" class="modal_link" id="editlink" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-pencil space" aria-hidden="true"></span></a>
+                    </b>
+                </div>);
+  columns.Add()
+         .Encoded(false)
+         .Sanitized(false)
+         .SetWidth(30)
+         .Css("hidden-xs") //hide on phones
+         .RenderValueAs(c =>
+            @<div id="balloon" class="balloonClass">
+                <b>
+                    @*<a href="#" onclick="Deleteconfirm('@c.ID')">Delete</a>*@
+                    <a href="#" onclick="confirmDelete('@c.ID','/Tenants')" data-toggle="tooltip" data-placement="bottom" title="Delete"><span class="glyphicon glyphicon-trash space" aria-hidden="true"></span></a>
+                </b>
+            </div>);
+
+  columns.Add(c => c.CompanyName).Titled("Company Name");
+  columns.Add(c => c.ContactPerson).Titled("Contact Person");
+  columns.Add(c => c.Email).Titled("Email");
+  columns.Add(c => c.ContactPhone).Titled("Contact Phone");
+  columns.Add(c => c.Address).Titled("Address");
+  columns.Add(c => c.City).Titled("City");
+  columns.Add(c => c.Country).Titled("Country");
+
+
+
+}).WithPaging(25).Sortable().Filterable().WithMultipleFilters()
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+

@@ -1,0 +1,250 @@
+﻿@model AustinWeinman.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Project</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectManager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectManager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RealStateManager)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RealStateManager)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParaLegal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParaLegal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sitesuperintendent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sitesuperintendent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Architect)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Architect)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CivilEngineer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CivilEngineer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrafficEngineer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrafficEngineer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConstructionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConstructionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreOpenDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreOpenDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaxParcelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaxParcelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenantReferenceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenantReferenceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyPurchaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyPurchaseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalStoreAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalStoreAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalStoreCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalStoreCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalStoreState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalStoreState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalStoreZip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalStoreZip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalStoreCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalStoreCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinalStorePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalStorePhone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
