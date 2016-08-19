@@ -74,7 +74,7 @@ namespace AustinWeinman.Controllers
         {
             
             
-            ViewBag.Job= new SelectList(ShrdMaster.Instance.Jobs(),"ID","Name");
+            ViewBag.Job= new SelectList(db.Jobs.ToList(), "ID","Name");
 
             return View();
         }
@@ -84,9 +84,9 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Job,FirstName,LastName,Company,Email,JobTitle,WorkPhone,HomePhone,MobilePhone,Address1,Address2,City,State,ZIPcode,Country,Webpage,Notes,Group")] Staff staff)
+        public ActionResult Create(Staff staff)
         {
-            ViewBag.Job = new SelectList(ShrdMaster.Instance.Jobs(), "ID", "Name");
+            ViewBag.Job = new SelectList(db.Jobs.ToList(), "ID", "Name");
 
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace AustinWeinman.Controllers
         // GET: Staffs/Edit/5
         public ActionResult Edit(int? id)
         {
-            ViewBag.Job = new SelectList(ShrdMaster.Instance.Jobs(), "ID", "Name");
+            ViewBag.Job = new SelectList(db.Jobs.ToList(), "ID", "Name");
 
             if (id == null)
             {

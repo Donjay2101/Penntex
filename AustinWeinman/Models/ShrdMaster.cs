@@ -22,18 +22,18 @@ namespace AustinWeinman.Models
         }
 
 
-        public List<Job> Jobs()
-        {
+        //public List<Job> Jobs()
+        //{
 
-            List<Job> list = new List<Job> {
-            new Job(){ID=1,Name="Project Manager"},
-            new Job(){ID=2,Name="Real Estate Manager"},
-            new Job(){ID=3,Name="Site Superintendent"},
-            new Job(){ID=4,Name="Paralegal"}
-            };
+        //    List<Job> list = new List<Job> {
+        //    new Job(){ID=1,Name="Project Manager"},
+        //    new Job(){ID=2,Name="Real Estate Manager"},
+        //    new Job(){ID=3,Name="Site Superintendent"},
+        //    new Job(){ID=4,Name="Paralegal"}
+        //    };
 
-            return list.OrderBy(x=>x.Name).ToList();
-        }
+        //    return list.OrderBy(x=>x.Name).ToList();
+        //}
 
         public List<Vendor> Vendors()
         {
@@ -123,11 +123,11 @@ namespace AustinWeinman.Models
     }
 
 
-    public class Job
-    {
-        public int ID { get;set; }
-        public string Name { get;set; }
-    }
+    //public class Job
+    //{
+    //    public int ID { get;set; }
+    //    public string Name { get;set; }
+    //}
 
     public class Company 
     {

@@ -219,6 +219,7 @@
     <Compile Include="Models\Agreementofsale.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Lease.cs" />
     <Compile Include="Models\Lender.cs" />
     <Compile Include="Models\Loan.cs" />
