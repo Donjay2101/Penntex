@@ -45,6 +45,7 @@ namespace AustinWeinman.Controllers
         public ActionResult Create()
         {
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
             return View();
         }
 
@@ -61,6 +62,8 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
 
             return View(lease);
         }
@@ -77,6 +80,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
             return View(lease);
         }
 
@@ -93,6 +98,8 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
             return View(lease);
         }
 
