@@ -37,13 +37,13 @@ columns.Add()
 
 
     columns.Add(c => c.Name).Titled("Name");
-    columns.Add(c => c.ProjectManager).Titled("Project Manager");
-    columns.Add(c => c.RealStateManager).Titled("Real Estate Manager");
-    columns.Add(c => c.ParaLegal).Titled("Paralegal");
+    columns.Add(c => c.ProjectManagerName).Titled("Project Manager");
+    columns.Add(c => c.RealStateManagerName).Titled("Real Estate Manager");
+    columns.Add(c => c.ParaLegalName).Titled("Paralegal");
     columns.Add(c => c.Architect).Titled("Architect");
     columns.Add(c => c.CivilEngineer).Titled("Civil Engineer");
     columns.Add(c => c.Municipality).Titled("Municipality");
-    columns.Add(c => c.PropertyPurchaseDate).Titled("Property Purchase Date");
+    columns.Add(c => c.PropertyPurchaseDate).Titled("Property Purchase Date").Format("{0:MM/dd/yyyy}");
 
 
 
