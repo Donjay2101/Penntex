@@ -12,7 +12,7 @@ namespace AustinWeinman.ViewModel
        
         public string StoreNumber { get; set; }
        
-        public int PropertType { get; set; }
+        public Nullable<int> PropertType { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -25,7 +25,7 @@ namespace AustinWeinman.ViewModel
         public Nullable<int> ParaLegal { get; set; }
        
         public Nullable<int> Sitesuperintendent { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; }
         public string Notes { get; set; }
         public Nullable<int> Architect { get; set; }
       
@@ -36,13 +36,13 @@ namespace AustinWeinman.ViewModel
         public Nullable<int> ConstructionType { get; set; }
         public Nullable<int> Municipality { get; set; }
       
-        public DateTime StoreOpenDate { get; set; }
+        public Nullable<DateTime> StoreOpenDate { get; set; }
         
         public string TaxParcelId { get; set; }
         
         public string TenantReferenceName { get; set; }
         
-        public DateTime PropertyPurchaseDate { get; set; }
+        public Nullable<DateTime> PropertyPurchaseDate { get; set; }
         
         public string FinalStoreAddress { get; set; }
         

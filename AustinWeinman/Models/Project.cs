@@ -27,8 +27,8 @@ namespace AustinWeinman.Models
         public Nullable<int> ParaLegal { get; set; }
         [DisplayName("Site Superintendent")]
         public Nullable<int> Sitesuperintendent { get; set; }
-        public bool Status { get; set; }
-        public string Notes { get; set; }
+        public string Status { get; set; }
+        public string  Notes { get; set; }
         public Nullable<int> Architect { get; set; }
         [DisplayName("Civil Engineer")]
         public Nullable<int> CivilEngineer { get; set; }
@@ -38,13 +38,13 @@ namespace AustinWeinman.Models
         public Nullable<int> ConstructionType { get; set; }
         public Nullable<int> Municipality { get; set; }
         [DisplayName("Store Open Date")]
-        public DateTime StoreOpenDate { get; set; }
+        public Nullable<DateTime> StoreOpenDate { get; set; }
         [DisplayName("Tax Parcel ID")]
         public string TaxParcelId { get; set; }
         [DisplayName("Tenant Reference Name")]
         public string TenantReferenceName { get; set; }
         [DisplayName("Property Purchase Date")]
-        public DateTime PropertyPurchaseDate { get; set; }
+        public Nullable<DateTime> PropertyPurchaseDate { get; set; }
         [DisplayName("Final Store Address")]
         public string FinalStoreAddress { get; set; }
         [DisplayName("Final Store City")]

@@ -24,24 +24,33 @@ namespace AustinWeinman.Controllers
 
         public ActionResult GetData()
         {
-            
 
-            var data = db.Database.SqlQuery<ProjectsViewModel>("exec sp_GetProjects").ToList().Select(x=>new Project {
-                Id=x.Id,
-                Name=x.Name,
-                ProjectManager=x.ProjectManager,
-                ProjectManagerName=x.ProjectManagerName,
-                RealStateManager=x.RealStateManager,
-                RealStateManagerName=x.RealStateManagerName,
-                ParaLegal=x.ParaLegal,
-                ParaLegalName=x.ParaLegalName,
-                Architect=x.Architect,
-                CivilEngineer=x.CivilEngineer,
-                Municipality=x.Municipality,
-                PropertyPurchaseDate=x.PropertyPurchaseDate                
+            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").ToList().Select(x => new Project
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ProjectManager = x.ProjectManager,
+                ProjectManagerName = x.ProjectManagerName,
+                RealStateManager = x.RealStateManager,
+                RealStateManagerName = x.RealStateManagerName,
+                ParaLegal = x.ParaLegal,
+                ParaLegalName = x.ParaLegalName,
+                Architect = x.Architect,
+                CivilEngineer = x.CivilEngineer,
+                Municipality = x.Municipality,
+                PropertyPurchaseDate = x.PropertyPurchaseDate
             }).ToList();
+
             return PartialView("_Projects", data);            
         }
+
+        //[HttpPost]
+        //public ActionResult GetData(string name) 
+        //{
+        //    List<Project> data = db.Projects.Where(e => e.Name.Contains(name)).ToList();
+        //    return PartialView("_Projects", data);
+        
+        //}
 
         // GET: Projects/Details/5
         public ActionResult Details(int? id)

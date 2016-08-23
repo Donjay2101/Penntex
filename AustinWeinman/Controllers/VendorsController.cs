@@ -23,8 +23,7 @@ namespace AustinWeinman.Controllers
         public ActionResult GetData() 
         {
             var data = db.Vendors.ToList();
-            return PartialView("_Vendors", data);
-        
+            return PartialView("_Vendors", data);        
         }
 
         // GET: Vendors/Details/5
@@ -34,6 +33,7 @@ namespace AustinWeinman.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
             {

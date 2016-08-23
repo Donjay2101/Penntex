@@ -65,6 +65,7 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
             return View(agreementofsale);

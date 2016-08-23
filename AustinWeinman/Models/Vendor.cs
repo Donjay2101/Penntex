@@ -18,7 +18,7 @@ namespace AustinWeinman.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [DisplayName("Job Title")]
-        public string JobTitle { get; set; }
+        public Nullable<int> JobTitle { get; set; }
 
         [DisplayName("Work Phone")]
         [DataType(DataType.PhoneNumber)]
