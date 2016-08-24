@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
+using AustinWeinman.ViewModel;
 
 namespace AustinWeinman.Controllers
 {
@@ -23,7 +24,15 @@ namespace AustinWeinman.Controllers
         public ActionResult GetData() 
         {
 
-            var data = db.Loans.ToList();
+            var data = db.Database.SqlQuery<LoanViewModel>("sp_GetLenderName ").ToList().Select(x => new Loan
+            {
+                Lender = x.Lender,
+                LenderName = x.LenderName,
+                Project = x.Project,
+                ProjectName = x.ProjectName,
+                Amount = x.Amount
+                
+            }).ToList();
             return PartialView("_Loans", data);
         
         }

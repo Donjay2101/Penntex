@@ -33,14 +33,14 @@
                 </b>
             </div>);
 
-    columns.Add(c => c.LengthofInitialDDPeriod).Titled("Name");
-    columns.Add(c => c.Lengthofextention).Titled("Store Number");
-    columns.Add(c => c.Numberofextension).Titled("Property Type");
-    columns.Add(c => c.Extensioncost).Titled("Address");
-    columns.Add(c => c.PurchasePrice).Titled("City");
-    columns.Add(c => c.Seller).Titled("State");
-    columns.Add(c => c.EscrowCompany).Titled("Zip");
-    columns.Add(c => c.Titlecompany).Titled("Country");
+    columns.Add(c => c.LengthofInitialDDPeriod).Titled("Length of Initial DD Period");
+    columns.Add(c => c.Lengthofextention).Titled("Length of Extention");
+    columns.Add(c => c.Numberofextension).Titled("Number of Extention");
+    columns.Add(c => c.Extensioncost).Titled("Extension Cost");
+    columns.Add(c => c.PurchasePrice).Titled("Purchase Price");
+    columns.Add(c => c.Seller).Titled("Seller");
+    columns.Add(c => c.EscrowCompanyName).Titled("Escrow Company");
+    columns.Add(c => c.TitleCompanyName).Titled("Title Company");
 
 
 }).WithPaging(25).Sortable().Filterable().WithMultipleFilters()

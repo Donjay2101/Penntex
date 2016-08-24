@@ -61,5 +61,9 @@ namespace AustinWeinman.ViewModel
         public string RealStateManagerName { get; set; }
         public string ParaLegalName { get; set; }
         public string SiteSuperintendentName { get; set; }
+        public string CivilEngineerName { get; set; }
+        public string TrafficEngineerName { get; set; }
+        public string MunicipalityName { get; set; }
+        public string ArchitectName {get; set; }
     }
 }

@@ -36,21 +36,47 @@ namespace AustinWeinman.Controllers
                 ParaLegal = x.ParaLegal,
                 ParaLegalName = x.ParaLegalName,
                 Architect = x.Architect,
+                ArchitectName = x.ArchitectName,
+                PropertyPurchaseDate = x.PropertyPurchaseDate,
                 CivilEngineer = x.CivilEngineer,
+                CivilEngineerName = x.CivilEngineerName,
+                TrafficEngineer = x.TrafficEngineer,
+                TrafficEngineerName = x.TrafficEngineerName,
                 Municipality = x.Municipality,
-                PropertyPurchaseDate = x.PropertyPurchaseDate
+                MunicipalityName = x.MunicipalityName
             }).ToList();
 
             return PartialView("_Projects", data);            
         }
 
-        //[HttpPost]
-        //public ActionResult GetData(string name) 
-        //{
-        //    List<Project> data = db.Projects.Where(e => e.Name.Contains(name)).ToList();
-        //    return PartialView("_Projects", data);
-        
-        //}
+        [HttpPost]
+        public ActionResult GetData(string name)
+        {
+
+            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").ToList().Where(e=> e.Name.Contains(name)).Select(x=> new Project
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ProjectManager = x.ProjectManager,
+                ProjectManagerName = x.ProjectManagerName,
+                RealStateManager = x.RealStateManager,
+                RealStateManagerName = x.RealStateManagerName,
+                ParaLegal = x.ParaLegal,
+                ParaLegalName = x.ParaLegalName,
+                Architect = x.Architect,
+                ArchitectName = x.ArchitectName,
+                PropertyPurchaseDate = x.PropertyPurchaseDate,
+                CivilEngineer = x.CivilEngineer,
+                CivilEngineerName = x.CivilEngineerName,
+                TrafficEngineer = x.TrafficEngineer,
+                TrafficEngineerName = x.TrafficEngineerName,
+                Municipality = x.Municipality,
+                MunicipalityName = x.MunicipalityName
+            }).ToList();
+
+            return PartialView("_Projects", data);            
+
+        }
 
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
@@ -75,6 +101,13 @@ namespace AustinWeinman.Controllers
             ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
             ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
             ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
+
+            
             return View();
         }
 
@@ -95,6 +128,11 @@ namespace AustinWeinman.Controllers
             ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
             ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
             ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
 
             return View(project);
         }
@@ -115,6 +153,13 @@ namespace AustinWeinman.Controllers
             ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
             ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
             ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
+
+            
             return View(project);
         }
 
@@ -135,6 +180,12 @@ namespace AustinWeinman.Controllers
             ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
             ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
             ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
+
             return View(project);
         }
 

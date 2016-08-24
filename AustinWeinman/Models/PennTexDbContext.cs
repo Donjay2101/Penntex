@@ -26,6 +26,8 @@ namespace AustinWeinman.Models
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Entity> Entities { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<Architect> Architects { get; set; }
+        public DbSet<ConstructionType> ConstructionTypes {get; set;}
 
         
     }

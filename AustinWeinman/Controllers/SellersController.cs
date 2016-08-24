@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
+using AustinWeinman.ViewModel;
 
 namespace AustinWeinman.Controllers
 {
@@ -22,7 +23,28 @@ namespace AustinWeinman.Controllers
 
         public ActionResult GetData() 
         {
-            var data = db.Sellers.ToList();
+            var data = db.Database.SqlQuery<SellersViewModel>("sp_GetProjectName ").ToList().Select(x => new Seller
+            {
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Company = x.Company,
+                Email = x.Email,
+                Jobtitle = x.Jobtitle,
+                WorkPhone = x.WorkPhone,
+                HomePhone = x.HomePhone,
+                MobilePhone = x.MobilePhone,
+                Address1 = x.Address1,
+                Address2 = x.Address2,
+                City = x.City,
+                State = x.State,
+                ZIPPostal = x.ZIPPostal,
+                Country = x.Country,
+                Webpage = x.Webpage,
+                Notes = x.Notes,
+                Groups = x.Groups,
+                Project = x.Project,
+                ProjectName = x.ProjectName
+            }).ToList(); 
             return PartialView("_sellers", data);
         
         }

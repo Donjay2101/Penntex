@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -56,5 +57,11 @@ namespace AustinWeinman.Models
         public Nullable< DateTime> Extension11DueDate { get; set; }
         [DisplayName("Extension 12 Due Date")]
         public Nullable< DateTime> Extension12DueDate { get; set; }
+
+        [NotMapped]
+        public string EscrowCompanyName { get; set;}
+        [NotMapped]
+        public string TitleCompanyName { get; set; }
+
           }
 }

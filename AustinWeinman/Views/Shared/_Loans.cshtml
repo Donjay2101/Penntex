@@ -33,10 +33,9 @@
                     <a href="#" onclick="confirmDelete('@c.ID','/Loans')" data-toggle="tooltip" data-placement="bottom" title="Delete"><span class="glyphicon glyphicon-trash space" aria-hidden="true"></span></a>
                 </b>
             </div>);
-
-  columns.Add(c => c.Lender).Titled("Lender");
-  columns.Add(c => c.Project).Titled("Project");
-  columns.Add(c => c.Amount).Titled("Amount");
+    columns.Add(c => c.ProjectName).Titled("Project");
+  columns.Add(c => c.LenderName).Titled("Lender");
+   columns.Add(c => c.Amount).Titled("Amount");
 
 
 }).WithPaging(25).Sortable().Filterable().WithMultipleFilters()

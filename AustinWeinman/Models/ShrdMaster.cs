@@ -47,13 +47,57 @@ namespace AustinWeinman.Models
         
         }
 
+        public List<Tenant> Tenants() 
+        {
+
+            var list = db.Tenants.ToList().Select(x => new Tenant
+
+                {
+                    ID = x.ID,
+                    CompanyName = x.CompanyName
+                }).ToList();
+            return list;
+        
+        
+        }
+
         public List<Project> Projects() 
         {
 
             var list = db.Projects.ToList().Select(x => new Project
             {
-
                 Id = x.Id,
+                Name = x.Name
+
+            }).ToList();
+
+            return list;
+        
+        
+        }
+
+        public List<Architect> Architects() 
+        {
+
+            var list = db.Architects.ToList().Select(x => new Architect
+
+                {
+                    ID = x.ID,
+                    Name = x.Name
+
+                }).ToList();
+
+            return list;
+                
+        }
+
+        public List<ConstructionType> ConstructionTypes() 
+        {
+
+            var list = db.ConstructionTypes.ToList().Select(x => new ConstructionType
+            {
+
+                ID = x.ID,
                 Name = x.Name
 
             }).ToList();
@@ -73,6 +117,9 @@ namespace AustinWeinman.Models
             }).ToList();
             return list;
         }
+
+
+
 
         public List<Staff> ProjectManagers()
         {

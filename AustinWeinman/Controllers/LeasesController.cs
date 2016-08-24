@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
+using AustinWeinman.ViewModel;
 
 namespace AustinWeinman.Controllers
 {
@@ -22,7 +23,22 @@ namespace AustinWeinman.Controllers
 
         public ActionResult GetData() 
         {
-            var data = db.Leases.ToList();
+            var data = db.Database.SqlQuery<LeaseViewModel>("sp_GetTenantName ").ToList().Select(x => new Lease
+            {
+                Project = x.Project,
+                ProjectName = x.ProjectName,
+                StartDate = x.StartDate,
+                MonthlyLease = x.MonthlyLease,
+                AnnulaLease = x.AnnulaLease,
+                TenantDueDilligenceDueDate = x.TenantDueDilligenceDueDate,
+                RentCommencementDate = x.RentCommencementDate,
+                Notes = x.Notes,
+                Tenant = x.Tenant,
+                TenantName = x.TenantName,
+                EndDate = x.EndDate,
+                TurnOverDate = x.TurnOverDate                
+
+            }).ToList();
             return PartialView("_Lease", data);
                 
         }

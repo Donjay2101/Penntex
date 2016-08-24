@@ -34,14 +34,14 @@
                 </b>
             </div>);
 
-    columns.Add(c => c.Project).Titled("Project");
+    columns.Add(c => c.ProjectName).Titled("Project");
     columns.Add(c => c.StartDate).Titled("Start Date").Format("{0:MM/dd/yyyy}");
     columns.Add(c => c.MonthlyLease).Titled("Monthly Lease");
     columns.Add(c => c.AnnulaLease).Titled("Annual Lease");
     columns.Add(c => c.TenantDueDilligenceDueDate).Titled("Tenant Due Dilligence Due Date").Format("{0:MM/dd/yyyy}");
     columns.Add(c => c.RentCommencementDate).Titled("Rent Commencement").Format("{0:MM/dd/yyyy}");
     columns.Add(c => c.Notes).Titled("Notes");
-    columns.Add(c => c.Tenant).Titled("Tenant");
+    columns.Add(c => c.TenantName).Titled("Tenant");
     columns.Add(c => c.EndDate).Titled("End Date").Format("{0:MM/dd/yyyy}");
     columns.Add(c => c.TurnOverDate).Titled("Turn Over Date").Format("{0:MM/dd/yyyy}");
 

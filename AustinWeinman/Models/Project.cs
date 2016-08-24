@@ -14,7 +14,7 @@ namespace AustinWeinman.Models
         [DisplayName("Store Number")]
         public string StoreNumber { get; set; }
         [DisplayName("Property Type")]
-        public int PropertType { get; set; }
+        public Nullable<int> PropertType { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -67,5 +67,15 @@ namespace AustinWeinman.Models
         public string ParaLegalName { get; set; }
         [NotMapped]
         public string SiteSuperintendentName { get; set; }
+        [NotMapped]
+        public string CivilEngineerName { get; set; }
+        [NotMapped]
+        public string TrafficEngineerName { get; set; }
+        [NotMapped]
+        public string MunicipalityName { get; set; }
+        [NotMapped]
+        public string ArchitectName { get; set; }
+    
+    
     }
 }

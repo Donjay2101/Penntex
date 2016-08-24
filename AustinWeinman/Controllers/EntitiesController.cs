@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
+using AustinWeinman.ViewModel;
 
 namespace AustinWeinman.Controllers
 {
@@ -23,7 +24,16 @@ namespace AustinWeinman.Controllers
         public ActionResult GetData() 
         {
 
-            var data = db.Entities.ToList();
+            var data = db.Database.SqlQuery<EntityViewModel>("sp_GetEntityName").ToList().Select(x => new Entity
+            {
+            Project = x.Project,
+            ProjectName = x.ProjectName,
+            LegalName = x.LegalName,
+            EINNumber = x.EINNumber,
+            AccountingGLcode = x.AccountingGLcode,
+            AccountingJobCode = x.AccountingJobCode
+            }).ToList(); 
+            
             return PartialView("_entity", data);
         }
 
@@ -45,6 +55,7 @@ namespace AustinWeinman.Controllers
         // GET: Entities/Create
         public ActionResult Create()
         {
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
             return View();
         }
 
@@ -61,7 +72,8 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
+       
             return View(entity);
         }
 
@@ -77,6 +89,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
+       
             return View(entity);
         }
 
@@ -93,6 +107,8 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
+       
             return View(entity);
         }
 

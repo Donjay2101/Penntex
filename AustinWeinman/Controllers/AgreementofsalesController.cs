@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
+using AustinWeinman.ViewModel;
 
 namespace AustinWeinman.Controllers
 {
@@ -22,7 +23,36 @@ namespace AustinWeinman.Controllers
 
         public ActionResult GetData() 
         {
-            var data = db.Agreementofsales.ToList();
+            var data = db.Database.SqlQuery<AgreementofsalesViewModel>("sp_vendors").ToList().Select(x => new Agreementofsale
+            {
+                LengthofInitialDDPeriod = x.LengthofInitialDDPeriod,
+                Lengthofextention = x.Lengthofextention,
+                Numberofextension = x.Numberofextension,
+                Extensioncost = x.Extensioncost,
+                PurchasePrice = x.PurchasePrice,
+                Seller = x.Seller,
+                AOSEffectiveDate = x.AOSEffectiveDate,
+                PurchaseDate = x.PurchaseDate,
+                NextPayment = x.NextPayment,
+                Extension1DueDate = x.Extension1DueDate,
+                Extension2DueDate = x.Extension2DueDate,
+                Extension3DueDate = x.Extension3DueDate,
+                Extension4DueDate = x.Extension4DueDate,
+                Extension5DueDate = x.Extension5DueDate,
+                Extension6DueDate = x.Extension6DueDate,
+                Extension7DueDate = x.Extension7DueDate,
+                Extension8DueDate = x.Extension8DueDate,
+                Extension9DueDate = x.Extension9DueDate,
+                Extension10DueDate = x.Extension10DueDate,
+                Extension11DueDate = x.Extension11DueDate,
+                Extension12DueDate = x.Extension12DueDate,
+                Project = x.Project,
+
+                EscrowCompany = x.EscrowCompany,
+                EscrowCompanyName = x.EscrowCompanyName,
+                Titlecompany = x.Titlecompany,
+                TitleCompanyName = x.TitleCompanyName                
+            }).ToList();
             return PartialView("_Agreementofsale", data);
         
         }
@@ -48,6 +78,7 @@ namespace AustinWeinman.Controllers
 
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
             ViewBag.Tenants= new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
+            
 
             return View();
         }
