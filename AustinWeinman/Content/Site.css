@@ -26,11 +26,23 @@ textarea {
 }
 .navbar-nav {
     float: right;
-        padding-top: 10px;
+        /*padding-top: 10px;*/
 }
 .navbar-inverse {
     background-color: #1f2b4a;
     border-color: #1f2b4a;
 }
-
-   
+.active-link{
+    background:#973635;
+    color:white;
+    padding-top: 29px;
+    padding-bottom: 29px;
+}
+   .navbar-nav > li > a {
+    padding-top: 29px;
+    padding-bottom: 29px;
+}
+    .navbar-nav > li:hover{
+        background:#2f3b58;
+        color:white;
+    }

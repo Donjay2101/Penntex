@@ -24,7 +24,22 @@
             });
 
         });
+       
     </script>
+    <script>
+        $(document).ready(function () {
+            var url = document.URL,
+            shortUrl = url.substring(0, url.lastIndexOf("/"));
+            var link = shortUrl.split('/');
+            $(".nav li a").each(function () {
+                var name = $(this).attr("name");
+                if (shortUrl.indexOf(name) > 0) {
+                    $(this).addClass("active-link");
+                }
+            });
+        });
+    </script>
+          
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -43,18 +58,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Project", "Index", "Projects")</li>
-                    <li>@Html.ActionLink("Agreement Of Sale", "Index", "Agreementofsales")</li>
-                    <li>@Html.ActionLink("Lease", "Index", "Leases")</li>
-                    <li>@Html.ActionLink("Loans", "Index", "Loans")</li>
-                    <li>@Html.ActionLink("Sellers", "Index", "Sellers")</li>
-                    <li>@Html.ActionLink("Staff", "Index", "Staffs")</li>
-                    <li>@Html.ActionLink("Tenant", "Index", "Tenants")</li>
-                    <li>@Html.ActionLink("Lender", "Index", "Lenders")</li>
-                    <li>@Html.ActionLink("Vendors", "Index", "Vendors")</li>
-                    <li>@Html.ActionLink("Entity", "Index", "Entities")</li>
-                    <li>@Html.ActionLink("Architect", "Index", "Architects")</li>
-                    <li>@Html.ActionLink("Construction Type", "Index", "ConstructionTypes")</li>
+                    <li><a href="/Projects/Index" name="Projects">Project</a></li>
+                    <li><a href="/Agreementofsales/Index" name="Agreementofsales">Agreement Of Sale</a></li>
+                    <li><a href="/Leases/Index" name="Leases">Lease</a></li>
+                    <li><a href="/Loans/Index" name="Loans">Loans</a></li>
+                    <li><a href="/Sellers/Index" name="Sellers">Sellers</a></li>
+                    <li><a href="/Staffs/Index" name="Staffs">Staff</a></li>
+                    <li><a href="/Tenants/Index" name="Tenants">Tenant</a></li>
+                    <li><a href="/Lenders/Index" name="Lenders">Lender</a></li>
+                    <li><a href="/Vendors/Index" name="Vendors">Vendors</a></li>
+                    <li><a href="/Entities/Index" name="Entities">Entity</a></li>
+
                              </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>
