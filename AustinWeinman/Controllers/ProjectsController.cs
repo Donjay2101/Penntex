@@ -53,7 +53,7 @@ namespace AustinWeinman.Controllers
         public ActionResult GetData(string name)
         {
 
-            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").ToList().Where(e=> e.Name.Contains(name)).Select(x=> new Project
+            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").ToList().Select(x=> new Project
             {
                 Id = x.Id,
                 Name = x.Name,

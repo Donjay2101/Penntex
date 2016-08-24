@@ -3,35 +3,7 @@
 @model IEnumerable<AustinWeinman.Models.Project>
 @using GridMvc.Html
 
-    <input type="text" placeholder="Search Project" id="search"  class="form-control" /> <button type="button" id="btn" class="btn btn-default" >Search</button>
 
-<script>
-    $(document).ready(function () {
-
-        $("#btn").click(function () {
-
-            $.ajax({
-
-                type: "post",
-                url: "/Projects/GetData?name=" + $("#search").val(),
-                sucess: function () { },
-                error: function () { }
-
-
-
-
-            })
-
-
-        })
-
-
-
-    })
-
-
-
-</script>
 
 <div>
     <a href="/Projects/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
