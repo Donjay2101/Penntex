@@ -201,6 +201,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AgreementofsalesController.cs" />
+    <Compile Include="Controllers\ArchitectsController.cs" />
+    <Compile Include="Controllers\ConstructionTypesController.cs" />
     <Compile Include="Controllers\EntitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeasesController.cs" />
@@ -387,6 +389,18 @@
     <Content Include="Views\Entities\Edit.cshtml" />
     <Content Include="Views\Entities\Index.cshtml" />
     <Content Include="Views\Shared\_entity.cshtml" />
+    <Content Include="Views\Architects\Create.cshtml" />
+    <Content Include="Views\Architects\Delete.cshtml" />
+    <Content Include="Views\Architects\Details.cshtml" />
+    <Content Include="Views\Architects\Edit.cshtml" />
+    <Content Include="Views\Architects\Index.cshtml" />
+    <Content Include="Views\Shared\_Architect.cshtml" />
+    <Content Include="Views\ConstructionTypes\Create.cshtml" />
+    <Content Include="Views\ConstructionTypes\Delete.cshtml" />
+    <Content Include="Views\ConstructionTypes\Details.cshtml" />
+    <Content Include="Views\ConstructionTypes\Edit.cshtml" />
+    <Content Include="Views\ConstructionTypes\Index.cshtml" />
+    <Content Include="Views\Shared\_ConstructionType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
