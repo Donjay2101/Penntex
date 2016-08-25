@@ -29,8 +29,9 @@ textarea {
         /*padding-top: 10px;*/
 }
 .navbar-inverse {
-    background-color: #1f2b4a;
-    border-color: #1f2b4a;
+    background-color: #224661;
+    border-color: #224661;
+    margin-top: 30px;
 }
 .active-link{
     background:#973635;
@@ -38,11 +39,77 @@ textarea {
     padding-top: 29px;
     padding-bottom: 29px;
 }
-   .navbar-nav > li > a {
-    padding-top: 29px;
-    padding-bottom: 29px;
+.navbar-inverse .navbar-nav > li > a {
+    color: #fbffde;
+}
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 13px;
+    color: white;
 }
     .navbar-nav > li:hover{
         background:#2f3b58;
         color:white;
     }
+    .logo-img{
+    position: absolute;
+    margin-top: -27px;
+}
+    button#btn {
+    border: none;
+    background: transparent;
+}
+    .grid-mvc a {
+    font-size: 12px;
+    color: #5a341e;
+}
+    .grid-mvc {
+    font-size: 12px;
+}
+    .linkbtn {
+    background: #224661;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+}
+       .linkbtn:hover{
+       color: #973635;
+       border:1px solid #973635;
+       background:#f9ffd1;
+       text-decoration:none;
+       }
+       input.linkbtn {
+    border:1px solid  #224661 ;
+    margin-right: 5px;
+}
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #973635;
+    border-color: #973635;
+}
+    .row-space{
+            margin-top: 40px;
+
+    }
+    label {
+    font-size: 12px;
+    color: grey;
+}
+    .form-control {
+    height: 28px;
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 2px;
+}
+    .form-group {
+    margin-bottom: 10px;
+}
+.input-group-addon {
+    padding: 5px 12px;
+}
+ 

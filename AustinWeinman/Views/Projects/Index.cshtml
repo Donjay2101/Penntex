@@ -2,10 +2,21 @@
 @{
     ViewBag.Title = "Index";
 }
-<input type="text" id="search" placeholder="Search Project" />
-<button type="button" id="btn" class="btn btn-default">Search</button>
+<div class="row">
 
-
+    <div class="col-md-3">
+        <a href="/Projects/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
+    </div>
+    <div class="col-md-3 col-md-offset-6">
+        <div class="input-group">
+            <input type="text" id="search" placeholder="Search Project" class="form-control">
+            <span class="input-group-addon">
+                <button type="button" id="btn"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+</div>
+<hr />
 <div id="dataContainer">
 
     @*@using (Html.BeginForm())

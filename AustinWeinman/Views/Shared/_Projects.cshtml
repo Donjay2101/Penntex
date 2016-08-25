@@ -2,12 +2,6 @@
 
 @model IEnumerable<AustinWeinman.Models.Project>
 @using GridMvc.Html
-
-
-<div>
-    <a href="/Projects/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
-</div>
-
 @Html.Grid(Model).Columns(columns =>
 {
 columns.Add()
