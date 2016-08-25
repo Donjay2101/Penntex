@@ -165,7 +165,7 @@
                                 @Html.DropDownListFor(model => model.Municipality, (SelectList)ViewBag.Municipality, "select--", new { @class = "form-control" })
                             </div>
                             </div>
-                        </div>
+                        
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.StoreOpenDate, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -255,12 +255,14 @@
                         <input type="submit" value="Save" class="btn btn-default" />@Html.ActionLink("Back to List", "Index")
                     </div>
                 </div>
-        }
+        
 
            
        
     </div>
+        }
 </div>
+            </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -26,6 +26,7 @@ namespace AustinWeinman.Controllers
 
             var data = db.Database.SqlQuery<EntityViewModel>("sp_GetEntityName").ToList().Select(x => new Entity
             {
+                ID=x.ID,
             Project = x.Project,
             ProjectName = x.ProjectName,
             LegalName = x.LegalName,

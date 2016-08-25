@@ -50,10 +50,10 @@ namespace AustinWeinman.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetData(string SearchString)
+        public ActionResult GetData(string name)
         {
 
-            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").Where(e=> e.Name.Contains(SearchString)).ToList().Select(x=> new Project
+            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").ToList().Select(x=> new Project
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -73,6 +73,8 @@ namespace AustinWeinman.Controllers
                 Municipality = x.Municipality,
                 MunicipalityName = x.MunicipalityName
             }).ToList();
+
+            data = data.Where(x => x.Name.Contains(name)).ToList();
 
             return PartialView("_Projects", data);            
 

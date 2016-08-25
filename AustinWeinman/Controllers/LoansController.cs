@@ -26,6 +26,7 @@ namespace AustinWeinman.Controllers
 
             var data = db.Database.SqlQuery<LoanViewModel>("sp_GetLenderName ").ToList().Select(x => new Loan
             {
+                ID=x.ID,
                 Lender = x.Lender,
                 LenderName = x.LenderName,
                 Project = x.Project,
@@ -75,6 +76,8 @@ namespace AustinWeinman.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Lenders(), "ID", "Name");
+            ViewBag.pJobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             return View(loan);
         }
 
@@ -90,6 +93,9 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Lenders(), "ID", "Name");
+            ViewBag.pJobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             return View(loan);
         }
 
@@ -106,6 +112,10 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Lenders(), "ID", "Name");
+            ViewBag.pJobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+
             return View(loan);
         }
 

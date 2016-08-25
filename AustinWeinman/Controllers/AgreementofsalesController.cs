@@ -25,6 +25,7 @@ namespace AustinWeinman.Controllers
         {
             var data = db.Database.SqlQuery<AgreementofsalesViewModel>("sp_vendors").ToList().Select(x => new Agreementofsale
             {
+                ID=x.ID,
                 LengthofInitialDDPeriod = x.LengthofInitialDDPeriod,
                 Lengthofextention = x.Lengthofextention,
                 Numberofextension = x.Numberofextension,
@@ -102,7 +103,6 @@ namespace AustinWeinman.Controllers
 
         // GET: Agreementofsales/Edit/5
         public ActionResult Edit(int? id)
-
         {
             if (id == null)
             {
@@ -164,8 +164,8 @@ namespace AustinWeinman.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            Agreementofsale project = db.Agreementofsales.Find(id);
-            db.Agreementofsales.Remove(project);
+            Agreementofsale AOS = db.Agreementofsales.Find(id);
+            db.Agreementofsales.Remove(AOS);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

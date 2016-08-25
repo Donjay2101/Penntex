@@ -25,6 +25,7 @@ namespace AustinWeinman.Controllers
         {
             var data = db.Database.SqlQuery<LeaseViewModel>("sp_GetTenantName ").ToList().Select(x => new Lease
             {
+                ID=x.ID,
                 Project = x.Project,
                 ProjectName = x.ProjectName,
                 StartDate = x.StartDate,
