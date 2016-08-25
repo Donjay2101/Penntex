@@ -49,7 +49,7 @@
                 @Html.ValidationMessageFor(model => model.Extensioncost, "", new { @class = "text-danger" })
             </div>
         </div>
-
+                  
         <div class="form-group">
                             @Html.LabelFor(model => model.PurchasePrice, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
@@ -76,14 +76,14 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Titlecompany, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.EscrowCompany, (SelectList)ViewBag.Jobs, "select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Titlecompany, (SelectList)ViewBag.Jobs, "select--", new { @class = "form-control" })
  </div>
         </div>
 
         <div class="form-group">
                             @Html.LabelFor(model => model.AOSEffectiveDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.AOSEffectiveDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.AOSEffectiveDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.AOSEffectiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -91,7 +91,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.PurchaseDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,7 +99,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.NextPayment, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.NextPayment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NextPayment, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.NextPayment, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -107,7 +107,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension1DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension1DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension1DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension1DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -117,7 +117,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension2DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension2DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension2DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension2DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -125,7 +125,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension3DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension3DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension3DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension3DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -133,7 +133,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension4DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension4DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension4DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension4DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -141,7 +141,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension5DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension5DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension5DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension5DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -149,7 +149,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension6DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension6DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension6DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension6DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -157,7 +157,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension7DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension7DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension7DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension7DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -165,7 +165,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension8DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension8DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension8DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension8DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -173,7 +173,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension9DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension9DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension9DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension9DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -181,7 +181,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension10DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension10DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension10DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension10DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -189,7 +189,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension11DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension11DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension11DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension11DueDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -197,7 +197,7 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Extension12DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.Extension12DueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Extension12DueDate, new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.Extension12DueDate, "", new { @class = "text-danger" })
             </div>
                         </div>

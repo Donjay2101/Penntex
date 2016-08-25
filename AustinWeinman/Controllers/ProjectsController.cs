@@ -50,10 +50,10 @@ namespace AustinWeinman.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetData(string name)
+        public ActionResult GetData(string SearchString)
         {
 
-            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").ToList().Select(x=> new Project
+            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects").Where(e=> e.Name.Contains(SearchString)).ToList().Select(x=> new Project
             {
                 Id = x.Id,
                 Name = x.Name,

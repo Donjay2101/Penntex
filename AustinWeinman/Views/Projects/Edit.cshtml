@@ -155,7 +155,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.ConstructionType, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.ConstructionType, (SelectList)ViewBag.ConstructionType, "select--", new { @class = "form-control" })             </div>
+                                @Html.DropDownListFor(model => model.ConstructionType, (SelectList)ViewBag.ConstructionType, "select--", new { @class = "form-control" })           
+                              </div>
                         </div>
 
                         <div class="form-group">
@@ -169,7 +170,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.StoreOpenDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.StoreOpenDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.StoreOpenDate, new { htmlAttributes = new { @class = "form-control date" } })
                             </div>
                         </div>
 
@@ -192,7 +193,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.PropertyPurchaseDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.EditorFor(model => model.PropertyPurchaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.PropertyPurchaseDate, new { htmlAttributes = new { @class = "form-control date" } })
                             </div>
                         </div>
 
@@ -254,7 +255,6 @@
                         <input type="submit" value="Save" class="btn btn-default" />@Html.ActionLink("Back to List", "Index")
                     </div>
                 </div>
-            </div>
         }
 
            

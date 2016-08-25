@@ -4,6 +4,42 @@
 }
 
 <div id="dataContainer">
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search Project: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+
+    @*<input type="text" id="search" placeholder="Search Project" />
+    <button type="button" id="btn" class="btn btn-default">Search</button>
+    <script>
+        $(document).ready(function () {
+
+            $("#btn").click(function () {
+
+                $.ajax({
+
+                    type: "post",
+                    url: "/Projects/GetData?name=" + $("#search").val(),
+                    success: function () { },
+                    error: function () { }
+
+
+                })
+
+            })
+
+
+        })
+
+
+
+    </script>*@
+
   @Html.Action("GetData")
 </div>
 

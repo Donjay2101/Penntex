@@ -4,7 +4,6 @@
 @using GridMvc.Html
 
 
-
 <div>
     <a href="/Projects/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
 </div>
@@ -20,7 +19,7 @@ columns.Add()
         @<div id="balloon" class="balloonClass">
             <b>
                 @*@Html.ActionLink("Edit", "Edit", new { id = c.ID }, new { @class = "modal_link", @Id = "editlink" })*@
-                <a href="/Projects/edit/@c.Id" class="modal_link" id="editlink" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-pencil space" aria-hidden="true"></span></a>
+                <a href="/Projects/edit?id=@c.Id" class="modal_link" id="editlink" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="glyphicon glyphicon-pencil space" aria-hidden="true"></span></a>
             </b>
         </div>);
 columns.Add()
