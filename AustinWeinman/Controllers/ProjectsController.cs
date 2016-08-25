@@ -153,16 +153,16 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName");
-            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
-            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
-            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
-            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
-            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
-            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name");
+            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName",project.ProjectManager);
+            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName", project.RealStateManager);
+            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName",project.Sitesuperintendent);
+            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName",project.ParaLegal);
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company",project.CivilEngineer);
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company",project.Municipality);
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company",project.TrafficEngineer);
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name",project.Architect);
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name",project.ConstructionType);
+            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name",project.Status);
 
             return View(project);
         }
@@ -180,33 +180,79 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName");
-            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
-            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
-            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
-            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
-            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
-            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name");
+            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName", project.ProjectManager);
+            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName", project.RealStateManager);
+            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName", project.Sitesuperintendent);
+            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName", project.ParaLegal);
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company", project.CivilEngineer);
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company", project.Municipality);
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company", project.TrafficEngineer);
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name", project.Architect);
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name", project.ConstructionType);
+            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name", project.Status);
             return View(project);
         }
 
-        // GET: Projects/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Project project = db.Projects.Find(id);
-        //    if (project == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(project);
-        //}
+
+        public ActionResult AOS(int? ID)
+        {
+
+            if(ID==null)
+            {
+                return HttpNotFound();
+            }
+
+            var data = db.Database.SqlQuery<AgreementofsalesViewModel>("exec sp_ProjectAOSView @ID", new SqlParameter("@ID", ID)).ToList();
+
+            return PartialView("_ProjectAOSView", data);
+
+        }
+       
+
+        public ActionResult Entity(int?ID)
+        {
+            if(ID==null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Entities.Where(x => x.Project == ID).ToList();
+
+            return PartialView("_ProjectEntityView", data);
+        }
+
+
+        public ActionResult Lease(int? ID)
+        {
+            if (ID == null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Database.SqlQuery<LeaseViewModel>("exec sp_ProjectLeaseView @ID", new SqlParameter("@ID", ID)).ToList();
+
+            return PartialView("_ProjectLeaseView", data);
+        }
+
+        public ActionResult Loan(int? ID)
+        {
+            if (ID == null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Database.SqlQuery<LoanViewModel>("exec sp_ProjectLoanView @ID", new SqlParameter("@ID", ID)).ToList();
+
+            return PartialView("_ProjectLoanView", data);
+        }
+
+        public ActionResult Seller(int?ID)
+        {
+            if (ID == null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Sellers.Where(x => x.Project == ID).ToList();
+
+            return PartialView("_ProjectSellerView", data);
+        }
 
         // POST: Projects/Delete/5
         [HttpPost]       

@@ -1,0 +1,17 @@
+﻿
+@model IEnumerable<AustinWeinman.ViewModel.LoanViewModel>
+@using GridMvc.Html
+
+
+
+@Html.Grid(Model).Columns(columns =>
+{  
+    columns.Add(c => c.LenderName).Titled("Lender");
+    columns.Add(c => c.Amount).Titled("Amount");
+
+}).WithPaging(25).Sortable().Filterable().WithMultipleFilters()
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+
+

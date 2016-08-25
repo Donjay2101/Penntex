@@ -115,8 +115,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
-            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName",agreementofsale.Seller);
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company",agreementofsale.Titlecompany);
             
             return View(agreementofsale);
         }
@@ -134,8 +134,8 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
+            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName", agreementofsale.Seller);
+            ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company", agreementofsale.Titlecompany);
             return View(agreementofsale);
         }
 
