@@ -3,13 +3,9 @@
 @{
     ViewBag.Title = "Create";
 }
-
-
 <div class="row">
+    @Html.HiddenFor(model=>model.Id)
     <div class="col-md-12">
-
-
-
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -264,6 +260,46 @@
         }
 </div>
             </div>
+
+<div class="row" id="linkContainer">
+    <a  value="AOS">AOS</a>
+    <a value="Entity">Entity</a>
+    <a value="Lease">Lease</a>
+    <a value="Loan">Loan</a>
+    <a value="Seller">Seller</a>
+</div>
+<div class="row" id="subdataContainer">
+    @Html.Action("AOS",new { ID=Model.Id})
+</div>
 @section Scripts {
+
+    <script>
+        $(document).on('click', '#linkContainer>a', function () {
+            debugger;
+            var id = $('#Id').val();
+
+            var val = $(this).attr('value');
+
+            val = val.toUpperCase();
+            switch(val)
+            {
+                case "AOS":
+                    $('#subdataContainer').load('/Projects/AOS/'+id);
+                    break;
+                case "ENTITY":
+                    $('#subdataContainer').load('/Projects/Entity/' + id);
+                    break;
+                case "LEASE":
+                    $('#subdataContainer').load('/Projects/Lease/' + id);
+                    break;
+                case "LOAN":
+                    $('#subdataContainer').load('/Projects/Loan/' + id);
+                    break;
+                case "SELLER":
+                    $('#subdataContainer').load('/Projects/Seller/' + id);
+                    break;
+            }
+        });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

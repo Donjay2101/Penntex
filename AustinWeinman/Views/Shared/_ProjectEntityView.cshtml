@@ -1,0 +1,21 @@
+﻿
+@model IEnumerable<AustinWeinman.Models.Entity>
+@using GridMvc.Html
+
+
+@Html.Grid(Model).Columns(columns =>
+{
+
+
+ 
+    columns.Add(c => c.LegalName).Titled("Legal Name");
+    columns.Add(c => c.EINNumber).Titled("Acounting Entity Code");    
+    columns.Add(c => c.AccountingJobCode).Titled("Accounting Job Code");
+
+
+}).WithPaging(25).Sortable().Filterable().WithMultipleFilters()
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/gridmvc.min.js"></script>
+
+
+

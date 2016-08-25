@@ -402,6 +402,11 @@
     <Content Include="Views\ConstructionTypes\Edit.cshtml" />
     <Content Include="Views\ConstructionTypes\Index.cshtml" />
     <Content Include="Views\Shared\_ConstructionType.cshtml" />
+    <Content Include="Views\Shared\_ProjectAOSView.cshtml" />
+    <Content Include="Views\Shared\_ProjectLeaseView.cshtml" />
+    <Content Include="Views\Shared\_ProjectLoanView.cshtml" />
+    <Content Include="Views\Shared\_ProjectSellerView.cshtml" />
+    <Content Include="Views\Shared\_ProjectEntityView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

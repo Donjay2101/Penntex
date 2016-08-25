@@ -193,20 +193,66 @@ namespace AustinWeinman.Controllers
             return View(project);
         }
 
-        // GET: Projects/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Project project = db.Projects.Find(id);
-        //    if (project == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(project);
-        //}
+
+        public ActionResult AOS(int? ID)
+        {
+
+            if(ID==null)
+            {
+                return HttpNotFound();
+            }
+
+            var data = db.Database.SqlQuery<AgreementofsalesViewModel>("exec sp_ProjectAOSView @ID", new SqlParameter("@ID", ID)).ToList();
+
+            return PartialView("_ProjectAOSView", data);
+
+        }
+       
+
+        public ActionResult Entity(int?ID)
+        {
+            if(ID==null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Entities.Where(x => x.Project == ID).ToList();
+
+            return PartialView("_ProjectEntityView", data);
+        }
+
+
+        public ActionResult Lease(int? ID)
+        {
+            if (ID == null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Database.SqlQuery<LeaseViewModel>("exec sp_ProjectLeaseView @ID", new SqlParameter("@ID", ID)).ToList();
+
+            return PartialView("_ProjectLeaseView", data);
+        }
+
+        public ActionResult Loan(int? ID)
+        {
+            if (ID == null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Database.SqlQuery<LoanViewModel>("exec sp_ProjectLoanView @ID", new SqlParameter("@ID", ID)).ToList();
+
+            return PartialView("_ProjectLoanView", data);
+        }
+
+        public ActionResult Seller(int?ID)
+        {
+            if (ID == null)
+            {
+                return HttpNotFound();
+            }
+            var data = db.Sellers.Where(x => x.Project == ID).ToList();
+
+            return PartialView("_ProjectSellerView", data);
+        }
 
         // POST: Projects/Delete/5
         [HttpPost]       
