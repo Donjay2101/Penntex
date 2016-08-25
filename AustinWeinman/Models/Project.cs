@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -37,13 +38,18 @@ namespace AustinWeinman.Models
         [DisplayName("Construction Type")]
         public Nullable<int> ConstructionType { get; set; }
         public Nullable<int> Municipality { get; set; }
+
         [DisplayName("Store Open Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<DateTime> StoreOpenDate { get; set; }
+
         [DisplayName("Tax Parcel ID")]
         public string TaxParcelId { get; set; }
         [DisplayName("Tenant Reference Name")]
         public string TenantReferenceName { get; set; }
+
         [DisplayName("Property Purchase Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<DateTime> PropertyPurchaseDate { get; set; }
         [DisplayName("Final Store Address")]
         public string FinalStoreAddress { get; set; }
