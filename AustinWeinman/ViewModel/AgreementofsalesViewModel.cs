@@ -17,7 +17,7 @@ namespace AustinWeinman.ViewModel
         public string Numberofextension { get; set; }
         public string Extensioncost { get; set; }
         public string PurchasePrice { get; set; }
-        public string Seller { get; set; }
+        public Nullable<int> Seller { get; set; }
         public Nullable<int> EscrowCompany { get; set; }
         public Nullable<int> Titlecompany { get; set; }
         public Nullable<DateTime> AOSEffectiveDate { get; set; }
@@ -38,6 +38,7 @@ namespace AustinWeinman.ViewModel
 
         public string EscrowCompanyName { get; set; }
         public string TitleCompanyName { get; set; }
+        public string SellersName { get; set; }
 
 
     }

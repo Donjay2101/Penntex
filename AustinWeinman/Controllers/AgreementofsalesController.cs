@@ -32,6 +32,7 @@ namespace AustinWeinman.Controllers
                 Extensioncost = x.Extensioncost,
                 PurchasePrice = x.PurchasePrice,
                 Seller = x.Seller,
+                SellersName = x.SellersName,
                 AOSEffectiveDate = x.AOSEffectiveDate,
                 PurchaseDate = x.PurchaseDate,
                 NextPayment = x.NextPayment,
@@ -78,6 +79,7 @@ namespace AustinWeinman.Controllers
         {
 
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             
 
             return View();
@@ -96,7 +98,7 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
             return View(agreementofsale);
         }
@@ -113,7 +115,7 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
-
+            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
             
             return View(agreementofsale);
@@ -133,6 +135,7 @@ namespace AustinWeinman.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             return View(agreementofsale);
         }
 

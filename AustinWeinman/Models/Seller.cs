@@ -45,5 +45,7 @@ namespace AustinWeinman.Models
 
         [NotMapped]
         public string ProjectName { get; set; }
+        [NotMapped]
+        public string FullName { get; set; }
     }
 }

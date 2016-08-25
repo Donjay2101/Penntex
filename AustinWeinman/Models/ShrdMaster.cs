@@ -76,6 +76,18 @@ namespace AustinWeinman.Models
         
         }
 
+        public List<Seller> Sellers() 
+        {
+        
+        var list = db.Sellers.ToList().Select(x=> new Seller
+        {
+        ID=x.ID,
+        FullName = x.FirstName + " " + x.LastName        
+        }).ToList();
+        return list;
+        
+        }
+
         public List<Architect> Architects() 
         {
 

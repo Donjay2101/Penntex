@@ -22,7 +22,7 @@ namespace AustinWeinman.Models
         public string Extensioncost { get; set; }
         [DisplayName("Purchase Price")]
         public string PurchasePrice { get; set; }
-        public string Seller { get; set; }
+        public Nullable<int> Seller { get; set; }
         [DisplayName(" Escrow Company")]
         public Nullable<int> EscrowCompany { get; set; }
         [DisplayName(" Title Company")]
@@ -62,6 +62,8 @@ namespace AustinWeinman.Models
         public string EscrowCompanyName { get; set;}
         [NotMapped]
         public string TitleCompanyName { get; set; }
+        [NotMapped]
+        public string SellersName { get; set; }
 
           }
 }
