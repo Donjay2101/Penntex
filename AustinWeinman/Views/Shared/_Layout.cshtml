@@ -28,15 +28,25 @@
     </script>
     <script>
         $(document).ready(function () {
+            debugger;
             var url = document.URL,
             shortUrl = url.substring(0, url.lastIndexOf("/"));
             var link = shortUrl.split('/');
-            $(".nav li a").each(function () {
-                var name = $(this).attr("name");
-                if (shortUrl.indexOf(name) > 0) {
-                    $(this).addClass("active-link");
-                }
-            });
+            if (link.length == 3)
+            {
+                $('.nav li a').eq(0).addClass('active-link');
+            }
+            else
+            {
+                $(".nav li a").each(function () {
+
+                    var name = $(this).attr("name");
+                    if (shortUrl.indexOf(name) > 0) {
+                        $(this).addClass("active-link");
+                    }
+                });
+            }
+            
         });
     </script>
           
@@ -80,7 +90,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - PennTex Ventures, LLC</p>
         </footer>
     </div>
 

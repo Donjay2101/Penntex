@@ -109,7 +109,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Sitesuperintendent, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.Sitesuperintendent, (SelectList)ViewBag.Sitesuperintendent, "select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Sitesuperintendent,ViewBag.Sitesuperintendent as  List<SelectListItem>, "select--", new { @class = "form-control" })
                             </div>
                         </div>
 
@@ -117,7 +117,8 @@
                             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
                                 <div class="checkbox">
-                                    @Html.EditorFor(model => model.Status)
+                                    @Html.DropDownListFor(model=>model.Status,ViewBag.Status as IEnumerable<SelectListItem>,"select--",new { @class="form-control"})
+                                    @*@Html.EditorFor(model => model.Status)*@
                                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                                 </div>
                             </div>

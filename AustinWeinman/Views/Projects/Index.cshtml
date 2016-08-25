@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Index";
 }
+<input type="text" id="search" placeholder="Search Project" />
+<button type="button" id="btn" class="btn btn-default">Search</button>
+
 
 <div id="dataContainer">
 
@@ -12,10 +15,13 @@
             <input type="submit" value="Search" />
         </p>
     }*@
+  @Html.Action("GetData")
+</div>
 
 
-    <input type="text" id="search" placeholder="Search Project" />
-    <button type="button" id="btn" class="btn btn-default">Search</button>
+@section Scripts
+{
+    
     <script>
         $(document).ready(function () {
 
@@ -23,10 +29,17 @@
 
                 $.ajax({
 
-                    type: "post",
+                    type: "GET",
                     url: "/Projects/GetData?name=" + $("#search").val(),
-                    success: function () { },
-                    error: function () { }
+                    success: function (data)
+                    {
+                        $('#dataContainer').html(data);
+                        console.log(data);
+                    },
+                    error: function (){
+
+
+                    }
 
 
                 })
@@ -38,8 +51,5 @@
 
 
 
-    </script>
-
-  @Html.Action("GetData")
-</div>
-
+</script>
+    }

@@ -27,7 +27,7 @@ namespace AustinWeinman.Models
         public Nullable<int> ParaLegal { get; set; }
         [DisplayName("Site Superintendent")]
         public Nullable<int> Sitesuperintendent { get; set; }
-        public string Status { get; set; }
+        public Nullable<int> Status { get; set; }
         public string  Notes { get; set; }
         public Nullable<int> Architect { get; set; }
         [DisplayName("Civil Engineer")]
@@ -75,6 +75,8 @@ namespace AustinWeinman.Models
         public string MunicipalityName { get; set; }
         [NotMapped]
         public string ArchitectName { get; set; }
+        [NotMapped]
+        public string StatusName { get; set; }
     
     
     }

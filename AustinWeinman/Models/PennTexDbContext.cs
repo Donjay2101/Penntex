@@ -28,6 +28,7 @@ namespace AustinWeinman.Models
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Architect> Architects { get; set; }
         public DbSet<ConstructionType> ConstructionTypes {get; set;}
+        public DbSet<Status> Status { get; set; }
 
         
     }

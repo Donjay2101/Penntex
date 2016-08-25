@@ -25,7 +25,7 @@ namespace AustinWeinman.ViewModel
         public Nullable<int> ParaLegal { get; set; }
        
         public Nullable<int> Sitesuperintendent { get; set; }
-        public string Status { get; set; }
+        public Nullable<int> Status { get; set; }
         public string Notes { get; set; }
         public Nullable<int> Architect { get; set; }
       
@@ -65,5 +65,6 @@ namespace AustinWeinman.ViewModel
         public string TrafficEngineerName { get; set; }
         public string MunicipalityName { get; set; }
         public string ArchitectName {get; set; }
+        public string StatusName { get; set; }
     }
 }

@@ -135,7 +135,7 @@ namespace AustinWeinman.Models
 
         public List<Staff> ProjectManagers()
         {
-            var list = db.Staffs.Where(x=>x.Job==1).ToList().Select(x => new Staff 
+            var list = db.Staffs.Where(x=>x.Job==2).ToList().Select(x => new Staff 
             { 
              ID=x.ID,
              FullName=x.FirstName+" "+x.LastName
@@ -146,7 +146,7 @@ namespace AustinWeinman.Models
 
         public List<Staff> RealEstates()
         {
-            var list = db.Staffs.Where(x => x.Job == 2).ToList().Select(x => new Staff
+            var list = db.Staffs.Where(x => x.Job == 1).ToList().Select(x => new Staff
             {
                 ID = x.ID,
                 FullName = x.FirstName + " " + x.LastName
@@ -157,7 +157,7 @@ namespace AustinWeinman.Models
 
         public List<Staff> Sitesuperintendents()
         {
-            var list = db.Staffs.Where(x => x.Job == 3).ToList().Select(x => new Staff
+            var list = db.Staffs.Where(x => x.Job == 4).ToList().Select(x => new Staff
             {
                 ID = x.ID,
                 FullName = x.FirstName + " " + x.LastName
@@ -168,7 +168,7 @@ namespace AustinWeinman.Models
 
         public List<Staff> Paralegals()
         {
-            var list = db.Staffs.Where(x => x.Job == 4).ToList().Select(x => new Staff
+            var list = db.Staffs.Where(x => x.Job == 3).ToList().Select(x => new Staff
             {
                 ID = x.ID,
                 FullName = x.FirstName + " " + x.LastName
@@ -188,6 +188,7 @@ namespace AustinWeinman.Models
     //    public string Name { get;set; }
     //}
 
+   
     public class Company 
     {
         public int ID { get; set; }

@@ -233,6 +233,7 @@
     <Compile Include="Models\Seller.cs" />
     <Compile Include="Models\ShrdMaster.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Tenant.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
