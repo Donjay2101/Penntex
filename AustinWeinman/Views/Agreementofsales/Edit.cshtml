@@ -61,27 +61,28 @@
         <div class="form-group">
                             @Html.LabelFor(model => model.Seller, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.Seller, (SelectList)ViewBag.sellers, "select--", new { @class = "form-control" })         </div>
+                                @Html.DropDownListFor(model => model.Seller,ViewBag.sellers as IEnumerable<SelectListItem>, "select--", new { @class = "form-control" })         </div>
         </div>
 
         <div class="form-group">
                             @Html.LabelFor(model => model.EscrowCompany, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.EscrowCompany, (SelectList)ViewBag.Jobs, "select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.EscrowCompany,ViewBag.Jobs as IEnumerable<SelectListItem>, "select--", new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
                             @Html.LabelFor(model => model.Titlecompany, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                                @Html.DropDownListFor(model => model.Titlecompany, (SelectList)ViewBag.Jobs, "select--", new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Titlecompany,ViewBag.Jobs  as IEnumerable<SelectListItem>, "select--", new { @class = "form-control" })
  </div>
         </div>
 
         <div class="form-group">
                             @Html.LabelFor(model => model.AOSEffectiveDate, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
-                @Html.EditorFor(model => model.AOSEffectiveDate, new { htmlAttributes = new { @class = "form-control date" } })
+                                
+                @Html.EditorFor(model => model.AOSEffectiveDate,"{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control date" } })
                 @Html.ValidationMessageFor(model => model.AOSEffectiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
