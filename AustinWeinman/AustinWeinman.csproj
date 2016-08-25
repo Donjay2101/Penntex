@@ -267,6 +267,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\logout.png" />
     <Content Include="Images\Search-icon.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -407,6 +408,7 @@
     <Content Include="Views\Shared\_ProjectLoanView.cshtml" />
     <Content Include="Views\Shared\_ProjectSellerView.cshtml" />
     <Content Include="Views\Shared\_ProjectEntityView.cshtml" />
+    <Content Include="Views\Shared\_LogoutLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

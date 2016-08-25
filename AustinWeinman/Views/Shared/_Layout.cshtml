@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
+<head>    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>PennTex Ventures I Commercial Real Estate Development</title>
+    <link rel="icon" href="~/Images/logo.png" type="image/png" />    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/Gridmvc.css" rel="stylesheet" />    
@@ -49,11 +50,16 @@
             }
             
         });
+        $('#myTabs a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
     </script>
           
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid navbar-fixed-top menu-top">
+        <div class="container">@Html.Partial("_LoginPartial")</div>      
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -64,11 +70,9 @@
                     </button>
                     <a href="/Projects/Index">
                         <img src="~/Images/logo.png" class="logo-img" />
-                    </a>
-
-                    @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                    </a>                 
                 </div>
-                <div class="navbar-collapse collapse">
+                <div class="navbar-collapse collapse" id="menu">
                     <ul class="nav navbar-nav">
                         <li><a href="/Projects/Index" name="Projects">Project</a></li>
                         <li><a href="/Agreementofsales/Index" name="Agreementofsales">Agreement Of Sale</a></li>
@@ -83,20 +87,19 @@
                         <li><a href="/Architects/Index" name="Architects">Architect</a></li>
                         <li><a href="/ConstructionTypes/Index" name="ConstructionType">Construction Type</a></li>
 
-                    </ul>
-                    @*@Html.Partial("_LoginPartial")*@
+                    </ul>                
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - PennTex Ventures, LLC</p>
-        </footer>
+        @RenderBody()       
     </div>
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - PennTex Ventures, LLC</p>
+    </footer>
     <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
