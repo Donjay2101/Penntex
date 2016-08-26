@@ -179,6 +179,23 @@ namespace AustinWeinman.Models
 
 
 
+        public string SetReturnUrl(string defaultUrl)
+        {
+            string returnUrl;
+            if(HttpContext.Current.Request.QueryString["returnUrl"]!=null)
+            {
+                returnUrl = HttpContext.Current.Request.QueryString["returnUrl"].ToString();
+                
+            }
+            else
+            {
+                returnUrl = defaultUrl;
+            }
+            return returnUrl;
+        }
+
+
+
     }
 
 

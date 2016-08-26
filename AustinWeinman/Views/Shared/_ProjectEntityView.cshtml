@@ -4,10 +4,7 @@
 
 
 @Html.Grid(Model).Columns(columns =>
-{
-
-
- 
+{ 
     columns.Add(c => c.LegalName).Titled("Legal Name");
     columns.Add(c => c.EINNumber).Titled("Acounting Entity Code");    
     columns.Add(c => c.AccountingJobCode).Titled("Accounting Job Code");
