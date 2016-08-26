@@ -2,10 +2,13 @@
 @using GridMvc.Html
 
 
-
-<div>
-    <a href="/Agreementofsales/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
+<div class="row">
+    <div class="col-md-3">
+        <a href="/Agreementofsales/Create" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
+    </div>
+    <div class="col-md-12 row-space"><hr /></div>
 </div>
+
 
 @Html.Grid(Model).Columns(columns =>
 {

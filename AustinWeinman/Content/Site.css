@@ -19,18 +19,19 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 .navbar-nav {
     float: right;
         /*padding-top: 10px;*/
 }
 .navbar-inverse {
-    background-color: #1f2b4a;
-    border-color: #1f2b4a;
+    background-color: #224661;
+    border-color: #224661;
+    margin-top: 30px;
 }
 .active-link{
     background:#973635;
@@ -38,11 +39,137 @@ textarea {
     padding-top: 29px;
     padding-bottom: 29px;
 }
-   .navbar-nav > li > a {
-    padding-top: 29px;
-    padding-bottom: 29px;
+.navbar-inverse .navbar-nav > li > a {
+    color: #fbffde;
 }
-    .navbar-nav > li:hover{
-        background:#2f3b58;
+.navbar-nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 13px;
+    color: white;
+}
+  #menu li:hover{
+        background:#0d334e;
         color:white;
     }
+    .logo-img{
+    position: absolute;
+    margin-top: -27px;
+}
+    button#btn {
+    border: none;
+    background: transparent;
+}
+    .grid-mvc a {
+    font-size: 12px;
+    color: #5a341e;
+}
+    .grid-mvc {
+    font-size: 12px;
+}
+    .linkbtn {
+    background: #224661;
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 3px;
+}
+       .linkbtn:hover{
+       color: #973635;
+       border:1px solid #973635;
+       background:#f9ffd1;
+       text-decoration:none;
+       }
+       input.linkbtn {
+    border:1px solid  #224661 ;
+    margin-right: 5px;
+}
+    .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #973635;
+    border-color: #973635;
+}
+    .row-space{
+            margin-top: 40px;
+
+    }
+    label {
+    font-size: 12px;
+    color: grey;
+}
+    .form-control {
+    height: 28px;
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 2px;
+}
+    .form-group {
+    margin-bottom: 10px;
+}
+.input-group-addon {
+    padding: 5px 12px;
+}
+ .tab-container {
+    padding: 10px;
+    background: #ececec;
+    border: 1px solid #d2cfcf;
+    border-radius: 3px;
+}
+ .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #973635;
+    font-weight: 700;
+    cursor: default;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+}
+  .nav-tabs > li > a
+  {
+      color:#224661;
+      font-weight:700;
+  }
+  span.glyphicon{
+    padding-right: 10px;
+    font-size: 10px;
+}
+  table.grid-table tr.grid-row-selected td {
+    background: #fbf7ca !important;
+    color: #973635!important;
+}
+   table.grid-table tr.grid-row-selected a{
+     color: #973635!important;
+    font-weight: 700!important;
+   }
+   .login-container {
+    border-radius: 5px;
+    padding: 35px;
+    box-shadow: 0 0 20px #c4bdbd;
+        background: #f7fcd4;
+}
+   .small{
+           font-size: 11px;
+   }
+   .menu-top{
+           height: 80px;
+    background:#f8fcda;
+    position: fixed;
+   }
+   a#loginLink {
+    background: transparent;
+    font-weight: 700;
+    color: #973635;
+    padding: 5px;
+    padding-left: 22px;
+    margin-top: -23px;
+}
+      a#loginLink:hover {
+    background: transparent;
+    font-weight: 700;
+    color: #973635;
+    padding: 5px;
+    padding-left: 22px;
+    margin-top: -23px;
+}
