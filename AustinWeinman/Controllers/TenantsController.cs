@@ -13,7 +13,7 @@ namespace AustinWeinman.Controllers
     public class TenantsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Tenants
         public ActionResult Index()
         {
@@ -46,6 +46,8 @@ namespace AustinWeinman.Controllers
         // GET: Tenants/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Tenants/Index");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -56,19 +58,22 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CompanyName,ContactPerson,Email,ContactPhone,Address,City,State,ZipCode,Country,Webpage,Notes")] Tenant tenant)
         {
+
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Tenants/Index");
             if (ModelState.IsValid)
             {
                 db.Tenants.Add(tenant);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View(tenant);
         }
 
         // GET: Tenants/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Tenants/Index");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,6 +83,7 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(tenant);
         }
 
@@ -88,12 +94,14 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,CompanyName,ContactPerson,Email,ContactPhone,Address,City,State,ZipCode,Country,Webpage,Notes")] Tenant tenant)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Tenants/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(tenant).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(tenant);
         }
 

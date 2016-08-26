@@ -14,7 +14,7 @@ namespace AustinWeinman.Controllers
     public class LeasesController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Leases
         public ActionResult Index()
         {
@@ -61,8 +61,11 @@ namespace AustinWeinman.Controllers
         // GET: Leases/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Leases/Index");
+
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -73,21 +76,23 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Project,StartDate,MonthlyLease,AnnulaLease,TenantDueDilligenceDueDate,RentCommencementDate,Notes,Tenant,EndDate,TurnOverDate")] Lease lease)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Leases/Index");
             if (ModelState.IsValid)
             {
                 db.Leases.Add(lease);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
-
+            ViewBag.ReturnUrl = returnUrl;
             return View(lease);
         }
 
         // GET: Leases/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Leases/Index");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -99,6 +104,7 @@ namespace AustinWeinman.Controllers
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
+            ViewBag.ReturnUrl = returnUrl;
             return View(lease);
         }
 
@@ -109,14 +115,16 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Project,StartDate,MonthlyLease,AnnulaLease,TenantDueDilligenceDueDate,RentCommencementDate,Notes,Tenant,EndDate,TurnOverDate")] Lease lease)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Leases/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(lease).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
+            ViewBag.ReturnUrl = returnUrl;
             return View(lease);
         }
 

@@ -13,7 +13,7 @@ namespace AustinWeinman.Controllers
     public class VendorsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Vendors
         public ActionResult Index()
         {
@@ -45,6 +45,8 @@ namespace AustinWeinman.Controllers
         // GET: Vendors/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Vendors/Index");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -55,19 +57,24 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Company,Email,JobTitle,WorkPhone,HomePhone,MobilePhone,Address1,Address2,City,State,Zipcode,Country,Webpage,Notes,ServiceProvided")] Vendor vendor)
         {
+
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Vendors/Index");
             if (ModelState.IsValid)
             {
                 db.Vendors.Add(vendor);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View(vendor);
         }
 
         // GET: Vendors/Edit/5
         public ActionResult Edit(int? id)
         {
+
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Vendors/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -77,6 +84,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(vendor);
         }
 
@@ -87,12 +96,14 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Company,Email,JobTitle,WorkPhone,HomePhone,MobilePhone,Address1,Address2,City,State,Zipcode,Country,Webpage,Notes,ServiceProvided")] Vendor vendor)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Vendors/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(vendor).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(vendor);
         }
 

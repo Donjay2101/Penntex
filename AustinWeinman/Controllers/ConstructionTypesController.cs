@@ -13,7 +13,7 @@ namespace AustinWeinman.Controllers
     public class ConstructionTypesController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: ConstructionTypes
         public ActionResult Index()
         {
@@ -46,6 +46,8 @@ namespace AustinWeinman.Controllers
         // GET: ConstructionTypes/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/ConstructionTypes/Index");
+            ViewBag.ReturnUrl = returnUrl; 
             return View();
         }
 
@@ -56,19 +58,23 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name")] ConstructionType constructionType)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/ConstructionTypes/Index");
+
             if (ModelState.IsValid)
             {
                 db.ConstructionTypes.Add(constructionType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View(constructionType);
         }
 
         // GET: ConstructionTypes/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/ConstructionTypes/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,6 +84,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(constructionType);
         }
 
@@ -88,12 +96,16 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name")] ConstructionType constructionType)
         {
+
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/ConstructionTypes/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(constructionType).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(constructionType);
         }
 

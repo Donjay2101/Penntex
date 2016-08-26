@@ -13,7 +13,7 @@ namespace AustinWeinman.Controllers
     public class ArchitectsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Architects
         public ActionResult Index()
         {
@@ -45,6 +45,8 @@ namespace AustinWeinman.Controllers
         // GET: Architects/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Architects/Index");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -55,19 +57,23 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name")] Architect architect)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Architects/Index");
             if (ModelState.IsValid)
             {
                 db.Architects.Add(architect);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
 
+            ViewBag.ReturnUrl = returnUrl;
             return View(architect);
         }
 
         // GET: Architects/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Architects/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -77,6 +83,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(architect);
         }
 
@@ -87,12 +95,16 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name")] Architect architect)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Architects/Index");
+
             if (ModelState.IsValid)
             {
                 db.Entry(architect).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(architect);
         }
 

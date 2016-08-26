@@ -14,7 +14,7 @@ namespace AustinWeinman.Controllers
     public class EntitiesController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Entities
         public ActionResult Index()
         {
@@ -56,7 +56,9 @@ namespace AustinWeinman.Controllers
         // GET: Entities/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Entities/Index");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -67,20 +69,25 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Project,LegalName,EINNumber,AccountingGLcode,AccountingJobCode")] Entity entity)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Entities/Index");
+
             if (ModelState.IsValid)
             {
                 db.Entities.Add(entity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
-       
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(entity);
         }
 
         // GET: Entities/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Entities/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -91,7 +98,8 @@ namespace AustinWeinman.Controllers
                 return HttpNotFound();
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
-       
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(entity);
         }
 
@@ -102,14 +110,17 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Project,LegalName,EINNumber,AccountingGLcode,AccountingJobCode")] Entity entity)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Entities/Index");
+
             if (ModelState.IsValid)
             {
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
-       
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(entity);
         }
 

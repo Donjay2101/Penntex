@@ -13,7 +13,7 @@ namespace AustinWeinman.Controllers
     public class LendersController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Lenders
         public ActionResult Index()
         {
@@ -31,6 +31,7 @@ namespace AustinWeinman.Controllers
         // GET: Lenders/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -46,6 +47,8 @@ namespace AustinWeinman.Controllers
         // GET: Lenders/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -56,19 +59,22 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name")] Lender lender)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
             if (ModelState.IsValid)
             {
                 db.Lenders.Add(lender);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View(lender);
         }
 
         // GET: Lenders/Edit/5
         public ActionResult Edit(int? id)
         {
+
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -78,6 +84,7 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(lender);
         }
 
@@ -88,12 +95,14 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name")] Lender lender)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(lender).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(lender);
         }
 

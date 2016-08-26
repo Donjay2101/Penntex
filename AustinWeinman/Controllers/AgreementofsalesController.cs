@@ -14,6 +14,7 @@ namespace AustinWeinman.Controllers
     public class AgreementofsalesController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
+        string returnUrl;
 
         // GET: Agreementofsales
         public ActionResult Index()
@@ -77,11 +78,13 @@ namespace AustinWeinman.Controllers
         // GET: Agreementofsales/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
+           
 
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
-            
 
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -92,20 +95,24 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
+
             if (ModelState.IsValid)
             {
                 db.Agreementofsales.Add(agreementofsale);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.ReturnUrl = returnUrl;
             return View(agreementofsale);
         }
 
         // GET: Agreementofsales/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -117,7 +124,7 @@ namespace AustinWeinman.Controllers
             }
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName",agreementofsale.Seller);
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company",agreementofsale.Titlecompany);
-            
+            ViewBag.ReturnUrl = returnUrl;
             return View(agreementofsale);
         }
 
@@ -128,14 +135,17 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
+
             if (ModelState.IsValid)
             {
                 db.Entry(agreementofsale).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName", agreementofsale.Seller);
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company", agreementofsale.Titlecompany);
+            ViewBag.ReturnUrl = returnUrl;
             return View(agreementofsale);
         }
 

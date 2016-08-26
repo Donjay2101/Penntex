@@ -14,7 +14,7 @@ namespace AustinWeinman.Controllers
     public class SellersController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Sellers
         public ActionResult Index()
         {
@@ -68,7 +68,9 @@ namespace AustinWeinman.Controllers
         // GET: Sellers/Create
         public ActionResult Create()
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Sellers/Index");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -79,19 +81,23 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Company,Email,Jobtitle,WorkPhone,HomePhone,MobilePhone,Address1,Address2,City,State,ZIPPostal,Country,Webpage,Notes,Groups,Project")] Seller seller)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Sellers/Index");
             if (ModelState.IsValid)
             {
                 db.Sellers.Add(seller);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.ReturnUrl = returnUrl;
             return View(seller);
         }
 
         // GET: Sellers/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Sellers/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -102,6 +108,8 @@ namespace AustinWeinman.Controllers
                 return HttpNotFound();
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(seller);
         }
 
@@ -112,13 +120,15 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Company,Email,Jobtitle,WorkPhone,HomePhone,MobilePhone,Address1,Address2,City,State,ZIPPostal,Country,Webpage,Notes,Groups,Project")] Seller seller)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Sellers/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(seller).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
+            ViewBag.ReturnUrl = returnUrl;
             return View(seller);
         }
 

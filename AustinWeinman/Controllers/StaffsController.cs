@@ -14,7 +14,7 @@ namespace AustinWeinman.Controllers
     public class StaffsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-
+        string returnUrl;
         // GET: Staffs
         public ActionResult Index()
         {
@@ -72,10 +72,10 @@ namespace AustinWeinman.Controllers
         // GET: Staffs/Create
         public ActionResult Create()
         {
-            
-            
-            ViewBag.Job= new SelectList(db.Jobs.ToList(), "ID","Name");
 
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Staffs/Index");
+            ViewBag.Job= new SelectList(db.Jobs.ToList(), "ID","Name");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
@@ -86,21 +86,23 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Staff staff)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Staffs/Index");
             ViewBag.Job = new SelectList(db.Jobs.ToList(), "ID", "Name");
 
             if (ModelState.IsValid)
             {
                 db.Staffs.Add(staff);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View(staff);
         }
 
         // GET: Staffs/Edit/5
         public ActionResult Edit(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Staffs/Index");
             ViewBag.Job = new SelectList(db.Jobs.ToList(), "ID", "Name");
 
             if (id == null)
@@ -112,6 +114,7 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(staff);
         }
 
@@ -122,12 +125,14 @@ namespace AustinWeinman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Job,FirstName,LastName,Company,Email,JobTitle,WorkPhone,HomePhone,MobilePhone,Address1,Address2,City,State,ZIPcode,Country,Webpage,Notes,Group")] Staff staff)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Staffs/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(returnUrl);
             }
+            ViewBag.ReturnUrl = returnUrl;
             return View(staff);
         }
 
