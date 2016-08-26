@@ -29,6 +29,9 @@ namespace AustinWeinman.Models
         public DbSet<Architect> Architects { get; set; }
         public DbSet<ConstructionType> ConstructionTypes {get; set;}
         public DbSet<Status> Status { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<CustomRole> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
         
     }

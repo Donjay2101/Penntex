@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AustinWeinman.Models;
+using System.Web.Security;
 
 namespace AustinWeinman.Controllers
 {
@@ -73,22 +74,53 @@ namespace AustinWeinman.Controllers
                 return View(model);
             }
 
+            if(ShrdMaster.Instance.AuthenticateUser(model.Username,model.Password))
+            {
+                User user = new Models.User();
+                user.Username = model.Username;
+                user.Password = model.Password;
+                SetupFormsAuthTicket(user,false);
+                return RedirectToLocal(returnUrl);
+            }
+            ModelState.AddModelError("", "Invalid login attempt.");
+            return View(model);
+
+
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //switch (result)
+            //{
+            //    case SignInStatus.Success:
+            //        return RedirectToLocal(returnUrl);
+            //    case SignInStatus.LockedOut:
+            //        return View("Lockout");
+            //    case SignInStatus.RequiresVerification:
+            //        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            //    case SignInStatus.Failure:
+            //    default:
+            //        ModelState.AddModelError("", "Invalid login attempt.");
+            //        return View(model);
+            //}
+        }
+
+
+        private User SetupFormsAuthTicket(User user, bool persistanceFlag)
+        {
+            //Student user;
+
+            var userId = user.ID;
+            var userData = userId.ToString(CultureInfo.InvariantCulture);
+            var authTicket = new FormsAuthenticationTicket(1, //version
+                                                        user.Username, // user name
+                                                        DateTime.Now,             //creation
+                                                        DateTime.Now.AddMinutes(30), //Expiration
+                                                        persistanceFlag, //Persistent
+                                                        userData);
+
+            var encTicket = FormsAuthentication.Encrypt(authTicket);
+            Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+            return user;
         }
 
         //
@@ -392,7 +424,10 @@ namespace AustinWeinman.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            Session.Abandon();
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Account", "Login");
         }
 
         //
