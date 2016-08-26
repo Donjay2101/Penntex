@@ -6,12 +6,12 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            Hello!@User.Identity.GetUserName()
+        <li class="welcome-user">
+            Hello&nbsp;!&nbsp;@User.Identity.GetUserName()
             @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
         </li>
-        <li>        
-            <img src="~/Images/logout.png" /><a href="javascript:document.getElementById('logoutForm').submit()" class="loginLink">Log off</a>
+        <li class="logoff">        
+           <a href="javascript:document.getElementById('logoutForm').submit()"  class="modal_link loginLink" id="editlink" data-toggle="tooltip" data-placement="bottom" title="Logout"><img src="~/Images/logout.png" /></a>
         </li>
     </ul>
     }

@@ -173,3 +173,19 @@ textarea {
     padding-left: 22px;
     margin-top: -23px;
 }
+      li.welcome-user {
+    float: left;
+    font-size: 12px;
+    font-weight: 700;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+      a.loginLink {
+    padding: 0px!important;
+    background: transparent;
+    margin-top: 2px;
+}
+      a.loginLink:hover{
+    background: transparent!important;
+}
