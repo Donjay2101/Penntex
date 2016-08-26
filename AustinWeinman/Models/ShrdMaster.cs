@@ -194,6 +194,33 @@ namespace AustinWeinman.Models
             return returnUrl;
         }
 
+        //Login Modules
+
+
+        public bool AuthenticateUser(string username,string password)
+        {
+            var count=db.Users.Where(x => x.Username == username && x.Password== password);
+            if(count.Count()>0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        public void SaveUser(RegisterViewModel model)
+        {
+            User user = new User();
+            user.Email = model.Email;
+            user.Username = model.Username;
+            user.Password = model.Password;
+            db.Users.Add(user);
+            db.SaveChanges();
+        }
+
+    
+
 
 
     }

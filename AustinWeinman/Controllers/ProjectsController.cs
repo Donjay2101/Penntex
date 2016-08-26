@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class ProjectsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
@@ -147,6 +148,7 @@ namespace AustinWeinman.Controllers
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
         {
+            //1
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Projects/Index");
             if (id == null)
             {
@@ -167,6 +169,7 @@ namespace AustinWeinman.Controllers
             ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name",project.Architect);
             ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name",project.ConstructionType);
             ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name",project.Status);
+            //2
             ViewBag.ReturnUrl = returnUrl;
             return View(project);
         }
