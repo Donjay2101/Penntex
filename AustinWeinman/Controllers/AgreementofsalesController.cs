@@ -92,32 +92,22 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate,Fileupload")] Agreementofsale agreementofsale, HttpPostedFileBase[] upload )
+        public ActionResult Create([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate,Fileupload")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads )
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    foreach (HttpPostedFileBase uploads in upload)
-                    {                       
-                            string filename = System.IO.Path.GetFileName(uploads.FileName);
-                            uploads.SaveAs(Server.MapPath("~/File/" + filename));
-                            agreementofsale.Fileupload = "~/File/" + filename;
-                    }
 
-                }
-
-                catch
-
-                {
-
-                }
+               
 
                 db.Agreementofsales.Add(agreementofsale);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                foreach (HttpPostedFileBase upload in uploads)
+                {
+                    ShrdMaster.Instance.SaveFileToServer(upload,agreementofsale.ID);
+                }
+                return Redirect(returnUrl);
             }
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");

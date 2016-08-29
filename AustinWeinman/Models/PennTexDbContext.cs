@@ -32,6 +32,8 @@ namespace AustinWeinman.Models
         public DbSet<User> Users { get; set; }
         public DbSet<CustomRole> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Upload> Uploads { get; set; }
+
 
         
     }

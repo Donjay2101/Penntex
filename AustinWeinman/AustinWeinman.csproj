@@ -238,6 +238,7 @@
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Tenant.cs" />
+    <Compile Include="Models\Upload.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Models\Vendor.cs" />
