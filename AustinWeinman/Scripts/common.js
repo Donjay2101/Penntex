@@ -80,3 +80,25 @@ function goToCreate(url) {
 
     window.location.href = newurl;
 }
+
+
+function openFiles(id)
+{
+
+    $.ajax({
+        url: "/AgreementOfSales/GetUploadedFiles?ID=" + id,
+        type:"GET",
+        success: function (data) {
+            $('#overlay2').css('display', 'block');
+            $('#divContainer').html(data);
+        },
+        error: function (err) {
+            alert(err.statusText);
+        }
+    });
+
+}
+function downloadFile(id) {
+    debugger;
+    window.open('http://localhost:53676/AgreementofSales/DownloadFile?ID=' + id, '_blank');
+}

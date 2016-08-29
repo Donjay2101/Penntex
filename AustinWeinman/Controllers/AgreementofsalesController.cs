@@ -151,14 +151,15 @@ namespace AustinWeinman.Controllers
 
             if (ModelState.IsValid)
             {
+                
+
+                db.Entry(agreementofsale).State = EntityState.Modified;
+                db.SaveChanges();
                 foreach (HttpPostedFileBase upload in uploads)
                 {
                     ShrdMaster.Instance.SaveFileToServer(upload, agreementofsale.ID);
                 }
-
-                db.Entry(agreementofsale).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
 
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName", agreementofsale.Seller);
@@ -200,6 +201,37 @@ namespace AustinWeinman.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+        //[ChildActionOnly]
+        public ActionResult GetUploadedFiles(int ID)
+        {
+            var files = db.Uploads.Where(c => c.AgreementID == ID);
+
+            return PartialView("_UploadedFiles",files);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteFiles(int ID)
+        {
+            var files = db.Uploads.Find(ID);
+            
+                db.Uploads.Remove(files);
+                db.SaveChanges();
+            
+            
+            return Json("1",JsonRequestBehavior.AllowGet);
+        }
+
+
+        public FileResult DownloadFile(int ID)
+        {
+            var file = db.Uploads.Find(ID);
+
+            return File(file.FilePath,System.Net.Mime.MediaTypeNames.Application.Octet,file.Name);
+
+        }
+
 
         protected override void Dispose(bool disposing)
         {

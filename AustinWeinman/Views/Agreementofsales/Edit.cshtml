@@ -11,7 +11,7 @@
         @using (Html.BeginForm("Edit", "Agreementofsales", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
                         @Html.AntiForgeryToken()
-
+        @Html.HiddenFor(model=>model.ID)
                         <div class="form-horizontal">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-8">
@@ -221,7 +221,7 @@
                         <div class="form-group">
                             @Html.Label("Attachment", new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                <input type="file" name="upload" multiple />
+                                <input type="file" name="uploads" multiple />
                             </div>
                         </div>
 
@@ -234,13 +234,13 @@
 
                 }
 
-      @foreach (var x in TempData["updatedata"] as List<Upload>)
-
-       
-      {
-          <p>@x.Name</p>
-
-      }
+      
 
     </div>
+</div>
+<div class="row">
+    <div>Uplaoded Files</div>
+</div>
+<div class="row" id="dataContainer">
+    @Html.Action("GetUploadedFiles", new { ID=Model.ID})
 </div>

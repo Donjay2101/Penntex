@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AustinWeinman.Models.Upload>
+
+<table>
+    <tr>
+        <th>
+            File Name
+        </th>
+        <th>Action</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                <a href="#" onclick="downloadFile('@item.ID')">Download</a>
+                <a href="#" onclick="deleteFile('@item.ID','@item.AgreementID')">Delete</a>
+                
+            </td>
+
+        </tr>
+    }    
+</table>
+<script>
+    
+
+    function deleteFile(id,agreementID)
+    {
+        if(confirm("are you sure you want delete?"))
+        {
+            $('#overlay').css('display','block');
+            $.ajax({
+                url:"/AgreementofSales/DeleteFiles",
+                type: "POST",
+                data:{ID:id},
+                success:function(data)
+                {
+                    $("#dataContainer").load("/AgreementofSales/GetUploadedFiles?ID=" + agreementID);
+                    $('#overlay').css('display','none');
+                },
+                error:function()
+                {
+
+                }
+
+
+            });
+        }
+    }
+</script>
+

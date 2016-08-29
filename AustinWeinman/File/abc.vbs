@@ -1,0 +1,2 @@
+dim strresult 
+msgbox "hello"
