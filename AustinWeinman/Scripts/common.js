@@ -2,6 +2,7 @@
 {
     if(confirm("are you sure you want delete?"))
     {
+        $('#overlay').css('display','block');
         $.ajax({
             url:loadurl+"/delete",
             type: "POST",
@@ -9,6 +10,7 @@
             success:function(data)
             {
                 $("#dataContainer").load(loadurl + "/GetData");
+                $('#overlay').css('display','none');
             },
             error:function()
             {
