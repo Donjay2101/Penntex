@@ -1,5 +1,5 @@
 ﻿@model AustinWeinman.Models.Agreementofsale
-
+@using AustinWeinman.Models;
 @{
     ViewBag.Title = "Create";
 }
@@ -228,10 +228,19 @@
                     </div>
                 </div>
             </div>
-        }
+
+           
 
 
+                }
 
+      @foreach (var x in TempData["updatedata"] as List<Upload>)
+
+       
+      {
+          <p>@x.Name</p>
+
+      }
 
     </div>
 </div>

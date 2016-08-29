@@ -48,6 +48,20 @@ namespace AustinWeinman.Models
         
         }
 
+        public List<Upload> uploads()
+        {
+            var list = db.Uploads.ToList().Select(x => new Upload
+            {
+                ID = x.ID,
+                Name = x.Name
+
+
+            }).ToList();
+            return list;
+
+
+        }
+
         public List<Tenant> Tenants() 
         {
 

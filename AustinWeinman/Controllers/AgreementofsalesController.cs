@@ -123,13 +123,17 @@ namespace AustinWeinman.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+         
             Agreementofsale agreementofsale = db.Agreementofsales.Find(id);
             if (agreementofsale == null)
             {
                 return HttpNotFound();
             }
 
+            List<Upload> uploadsdata = db.Uploads.Where(e => e.AgreementID == id).ToList();
+            TempData["updatedata"] = uploadsdata;
+            
+           
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName",agreementofsale.Seller);
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company",agreementofsale.Titlecompany);
             ViewBag.ReturnUrl = returnUrl;
@@ -141,29 +145,15 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate, Fileupload")] Agreementofsale agreementofsale, HttpPostedFileBase[] upload)
+        public ActionResult Edit([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate, Fileupload")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads)
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
 
             if (ModelState.IsValid)
             {
-                try
+                foreach (HttpPostedFileBase upload in uploads)
                 {
-                    foreach (HttpPostedFileBase uploads in upload)
-                    {
-
-                        string filename = System.IO.Path.GetFileName(uploads.FileName);
-                        uploads.SaveAs(Server.MapPath("~/File/" + filename));
-                        agreementofsale.Fileupload = "~/File/" + filename;
-                    }
-
-                }
-
-                catch
-
-                {
-
-
+                    ShrdMaster.Instance.SaveFileToServer(upload, agreementofsale.ID);
                 }
 
                 db.Entry(agreementofsale).State = EntityState.Modified;
