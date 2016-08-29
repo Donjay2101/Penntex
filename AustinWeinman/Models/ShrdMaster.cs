@@ -72,8 +72,7 @@ namespace AustinWeinman.Models
             }).ToList();
 
             return list;
-        
-        
+             
         }
 
         public List<Seller> Sellers() 

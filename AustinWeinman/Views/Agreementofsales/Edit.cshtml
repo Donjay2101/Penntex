@@ -8,11 +8,11 @@
     <div class="col-md-12">
 
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Agreementofsales", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.AntiForgeryToken()
+                        @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
+                        <div class="form-horizontal">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-8">
                         <input type="submit" value="Save" class="linkbtn pull-right" /><input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
@@ -217,6 +217,14 @@
                                 @Html.ValidationMessageFor(model => model.Extension12DueDate, "", new { @class = "text-danger" })
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            @Html.Label("Attachment", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" name="upload" multiple />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
