@@ -427,7 +427,7 @@ namespace AustinWeinman.Controllers
             Session.Abandon();
             Session.Clear();
             FormsAuthentication.SignOut();
-            return RedirectToAction("Account", "Login");
+            return RedirectToAction("Login", "Account");
         }
 
         //
