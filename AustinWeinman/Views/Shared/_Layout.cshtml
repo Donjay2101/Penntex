@@ -18,9 +18,9 @@
     <script>
         $(document).ready(function () {
 
-            //debugger;
+            //////debugger;
             $(".date").each(function () {
-                //debugger;
+                //////debugger;
                 //  var j= $.noConflict();
                 $(this).datepicker();
             });
@@ -30,7 +30,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            debugger;
+            ////debugger;
             var url = document.URL,
             shortUrl = url.substring(0, url.lastIndexOf("/"));
             var link = shortUrl.split('/');
@@ -78,13 +78,17 @@
     background: rgba(145, 146, 146, 0.68);
     z-index: 9999;
     top: 0;display:none">
-        <div id="divContainer" style="
-    position: fixed;
-    top: 50%;
-    left: 50%;">
-            
+        <div id="close-box"> 
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </div>
+            </div>           
         </div>
-    </div>
+        <div id="divContainer" class="uploadFile-container">
+        </div>
+</div>
+   
 
     <div class="container-fluid navbar-fixed-top menu-top">
         <div class="container">@Html.Partial("_LoginPartial")</div>      

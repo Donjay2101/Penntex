@@ -1,27 +1,21 @@
 ﻿@model IEnumerable<AustinWeinman.Models.Upload>
 
-<table>
-    <tr>
-        <th>
-            File Name
-        </th>
-        <th>Action</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                <a href="#" onclick="downloadFile('@item.ID')">Download</a>
-                <a href="#" onclick="deleteFile('@item.ID','@item.AgreementID')">Delete</a>
-                
-            </td>
-
-        </tr>
-    }    
-</table>
+<ul class="nonbullet" id="downloadfile">
+    <li class="pull-left"><label> File Name</label></li>
+    <li class="pull-left"><label>Action</label></li>
+</ul>
+<div class="row">
+    <div class="col-md-12" id="listOfFile">
+        @foreach (var item in Model)
+        {
+            <ul class="nonbullet">
+                <li class="pull-left" id="Fname"><span class="file-name">@item.Name</span></li>
+                <li class="pull-left"><a href="#" onclick="downloadFile('@item.ID')"><span class="glyphicon glyphicon-download"></span>Download</a></li>
+                <li class="pull-left"><a href="#" onclick="deleteFile('@item.ID','@item.AgreementID')"><span class="glyphicon glyphicon-remove"></span>Delete</a></li>
+            </ul>
+        }
+    </div>
+</div>
 <script>
     
 

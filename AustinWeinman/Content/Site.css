@@ -56,7 +56,7 @@ textarea {
     position: absolute;
     margin-top: -27px;
 }
-    button#btn {
+    button#search-btn {
     border: none;
     background: transparent;
 }
@@ -136,7 +136,7 @@ textarea {
     font-size: 10px;
 }
   table.grid-table tr.grid-row-selected td {
-    background: #fbf7ca !important;
+    background:#fff8ad!important;
     color: #973635!important;
 }
    table.grid-table tr.grid-row-selected a{
@@ -188,4 +188,57 @@ textarea {
 }
       a.loginLink:hover{
     background: transparent!important;
+}
+      .nonbullet{
+          list-style-type:none;
+      }
+      ul#downloadfile li {
+    width: 25%;
+}
+   div#listOfFile li#Fname {
+    width: 25%;
+    word-break:break-word;
+}
+ #listOfFile  span.glyphicon {
+    padding-right: 10px;
+    font-size: 15px;
+    color: #973635;
+}
+ #listOfFile a {
+    color: #973635;
+    text-decoration: none;
+    padding-right: 10px;
+}
+ .upload-file {
+    color: #973635;
+    padding-left: 40px;
+    background: #eeef92;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+}
+ .uploadFile-container {
+    position: fixed;
+    top: 25%;
+    left: 35%;
+    width: 35%;
+    background: white;
+    box-shadow: 0 0 30px grey;
+    border-radius: 3px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+ #divContainer   ul#downloadfile li {
+    width: 40%;
+}
+  #divContainer  div#listOfFile li#Fname {
+    width: 40%;
+    word-break:break-word;
+}
+  div#close-box {
+    width: 35%;
+    left: 35%;
+    top: 22%;
+    text-align: right;
+    position: absolute;
 }

@@ -27,7 +27,7 @@
 
 function goToPrevious(url)
 {
-    debugger;
+    //debugger;
     //console.log(getURL());
     var txt = decodeURI(url);
     //url =  txt;
@@ -59,7 +59,7 @@ function getURL()
 
 function goToCreate(url) {
 
-    debugger;
+    //debugger;
     var cururl = window.location.href;
     var comidx = cururl.split('/');
     var returnUrl="";
@@ -99,6 +99,6 @@ function openFiles(id)
 
 }
 function downloadFile(id) {
-    debugger;
+    //debugger;
     window.open('http://localhost:53676/AgreementofSales/DownloadFile?ID=' + id, '_blank');
 }
