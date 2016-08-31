@@ -130,8 +130,8 @@ namespace AustinWeinman.Controllers
                 return HttpNotFound();
             }
 
-            List<Upload> uploadsdata = db.Uploads.Where(e => e.AgreementID == id).ToList();
-            TempData["updatedata"] = uploadsdata;
+            //List<Upload> uploadsdata = db.Uploads.Where(e => e.AgreementID == id).ToList();
+            //TempData["updatedata"] = uploadsdata;
             
            
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName",agreementofsale.Seller);

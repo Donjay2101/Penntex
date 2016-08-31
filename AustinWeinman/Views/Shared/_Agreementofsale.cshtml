@@ -48,7 +48,7 @@ columns.Add()
         @<div id="balloon" class="balloonClass">
             <b>
                 @*<a href="#" onclick="Deleteconfirm('@c.ID')">Delete</a>*@
-                <a href="#" onclick="openFiles('@c.ID')" data-toggle="tooltip" data-placement="bottom" title="Files"><span class="glyphicon glyphicon-file space" aria-hidden="true"></span></a>
+                <a href="#" onclick="openFiles('@c.ID')" data-toggle="tooltip" data-placement="bottom" title="Agreement documents"><span class="glyphicon glyphicon-file space" aria-hidden="true"></span></a>
             </b>
         </div>);
 
@@ -65,6 +65,8 @@ columns.Add()
 
 
 }).WithPaging(25).Sortable().Filterable().WithMultipleFilters()
+
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/gridmvc.min.js"></script>
 

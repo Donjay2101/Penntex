@@ -84,12 +84,13 @@ function goToCreate(url) {
 
 function openFiles(id)
 {
-
+    $('#overlay').css('display', 'block');
     $.ajax({
         url: "/AgreementOfSales/GetUploadedFiles?ID=" + id,
         type:"GET",
         success: function (data) {
-            $('#overlay2').css('display', 'block');
+            $('#overlay').css('display', 'none');
+            $('#overlay2').css('display', 'block');            
             $('#divContainer').html(data);
         },
         error: function (err) {

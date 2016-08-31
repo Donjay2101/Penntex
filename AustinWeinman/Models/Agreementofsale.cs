@@ -73,8 +73,7 @@ namespace AustinWeinman.Models
         [DisplayName("Extension 12 Due Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable< DateTime> Extension12DueDate { get; set; }
-        [DisplayName("File Upload")]
-        public string Fileupload { get; set; }
+        
 
 
 
