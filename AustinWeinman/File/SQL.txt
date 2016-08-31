@@ -1,0 +1,5 @@
+Insert into Entities values ('8','PTV Alum Bank, LLC','01-12345','1-0002','1-0002-0002')
+Insert into Entities values ('1','PTV Blairsville, LLC','61-1760357','1-0040','1-9999-0043')
+Insert into Entities values ('45','PTV VIII, LLC',Null,Null,Null)
+Insert into Entities values ('7','PTV XXXIV, LLC','35-2555540','1-0076','076')
+Insert into Entities values ('25','PTVXXXVIII, LLC','32-0488318',Null,Null)

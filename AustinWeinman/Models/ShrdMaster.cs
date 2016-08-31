@@ -201,7 +201,9 @@ namespace AustinWeinman.Models
                 returnUrl = HttpContext.Current.Request.QueryString["returnUrl"].ToString();
                 
             }
+
             else
+
             {
                 returnUrl = defaultUrl;
             }
@@ -237,16 +239,19 @@ namespace AustinWeinman.Models
 
         public void SaveFileToServer(HttpPostedFileBase  file,int ID)
         {
-            Upload upload = new Upload();
-            string path=HttpContext.Current.Server.MapPath("~/File");
-            path = Path.Combine(path, file.FileName);
-            file.SaveAs(path);
+            if (file != null)
+            {
+                Upload upload = new Upload();
+                string path = HttpContext.Current.Server.MapPath("~/File");
+                path = Path.Combine(path, file.FileName);
+                file.SaveAs(path);
 
-            upload.FilePath = "/File/"+file.FileName;
-            upload.Name = file.FileName;
-            upload.AgreementID = ID;
-            db.Uploads.Add(upload);        
-            db.SaveChanges();
+                upload.FilePath = "/File/" + file.FileName;
+                upload.Name = file.FileName;
+                upload.AgreementID = ID;
+                db.Uploads.Add(upload);
+                db.SaveChanges();
+            }
         }
 
     }

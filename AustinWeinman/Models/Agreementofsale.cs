@@ -12,7 +12,7 @@ namespace AustinWeinman.Models
     {
         public int ID { get; set; }
         [DisplayName("Project Name")]
-        public Nullable< int> Project { get; set;} 
+        public Nullable<int> Project { get; set;} 
         [DisplayName("Length of Initial DD Period ")]
         public string LengthofInitialDDPeriod { get; set; }
         [DisplayName("Length of Extention ")]
@@ -73,10 +73,10 @@ namespace AustinWeinman.Models
         [DisplayName("Extension 12 Due Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable< DateTime> Extension12DueDate { get; set; }
-        
+       
 
-
-
+        [NotMapped]
+        public string ProjectsName { get; set; }
         [NotMapped]
         public string EscrowCompanyName { get; set;}
         [NotMapped]
