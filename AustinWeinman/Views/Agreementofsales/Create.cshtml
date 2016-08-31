@@ -32,6 +32,13 @@
                         </div>
 
                         <div class="form-group">
+                            @Html.LabelFor(model => model.Project, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.Project, (SelectList)ViewBag.Projects, "select--", new { @class = "form-control" })
+       </div>
+                        </div>
+
+                        <div class="form-group">
                             @Html.LabelFor(model => model.Lengthofextention, htmlAttributes: new { @class = "control-label col-md-4" })
                             <div class="col-md-8">
                                 @Html.EditorFor(model => model.Lengthofextention, new { htmlAttributes = new { @class = "form-control" } })

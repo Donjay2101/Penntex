@@ -33,11 +33,12 @@ namespace AustinWeinman.Controllers
                 Numberofextension = x.Numberofextension,
                 Extensioncost = x.Extensioncost,
                 PurchasePrice = x.PurchasePrice,
+                ProjectsName = x.ProjectsName,
                 Seller = x.Seller,
                 SellersName = x.SellersName,
                 AOSEffectiveDate = x.AOSEffectiveDate,
                 PurchaseDate = x.PurchaseDate,
-                NextPayment = x.NextPayment,
+                NextPayment = x.NextPayment,                
                 Extension1DueDate = x.Extension1DueDate,
                 Extension2DueDate = x.Extension2DueDate,
                 Extension3DueDate = x.Extension3DueDate,
@@ -51,7 +52,6 @@ namespace AustinWeinman.Controllers
                 Extension11DueDate = x.Extension11DueDate,
                 Extension12DueDate = x.Extension12DueDate,
                 Project = x.Project,
-
                 EscrowCompany = x.EscrowCompany,
                 EscrowCompanyName = x.EscrowCompanyName,
                 Titlecompany = x.Titlecompany,
@@ -61,7 +61,7 @@ namespace AustinWeinman.Controllers
         
         }
 
-        // GET: Agreementofsales/Details/5
+        // GET: Agreementofsales/Details/5 
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -82,7 +82,7 @@ namespace AustinWeinman.Controllers
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");           
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
-
+            ViewBag.Projects = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -92,25 +92,29 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate,Fileupload")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads )
+        public ActionResult Create([Bind(Include = "ID,Project,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads )
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
 
             if (ModelState.IsValid)
             {
-
-               
-
                 db.Agreementofsales.Add(agreementofsale);
                 db.SaveChanges();
-                foreach (HttpPostedFileBase upload in uploads)
-                {
-                    ShrdMaster.Instance.SaveFileToServer(upload,agreementofsale.ID);
-                }
+                
+
+                    foreach (HttpPostedFileBase upload in uploads)
+                    {
+
+                        ShrdMaster.Instance.SaveFileToServer(upload, agreementofsale.ID);
+
+                    }
+
+                
                 return Redirect(returnUrl);
             }
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers(), "ID", "FullName");
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Projects = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.ReturnUrl = returnUrl;
             return View(agreementofsale);
         }
@@ -130,10 +134,10 @@ namespace AustinWeinman.Controllers
                 return HttpNotFound();
             }
 
-            List<Upload> uploadsdata = db.Uploads.Where(e => e.AgreementID == id).ToList();
-            TempData["updatedata"] = uploadsdata;
-            
-           
+            //List<Upload> uploadsdata = db.Uploads.Where(e => e.AgreementID == id).ToList();
+            //TempData["updatedata"] = uploadsdata;
+
+            ViewBag.Projects = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName",agreementofsale.Seller);
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company",agreementofsale.Titlecompany);
             ViewBag.ReturnUrl = returnUrl;
@@ -145,7 +149,7 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate, Fileupload")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads)
+        public ActionResult Edit([Bind(Include = "ID,Project,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads)
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
 
@@ -162,6 +166,7 @@ namespace AustinWeinman.Controllers
                 return Redirect(returnUrl);
             }
 
+            ViewBag.Projects = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.sellers = new SelectList(ShrdMaster.Instance.Sellers().ToList(), "ID", "FullName", agreementofsale.Seller);
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Vendors().ToList(), "ID", "Company", agreementofsale.Titlecompany);
             ViewBag.ReturnUrl = returnUrl;

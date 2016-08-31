@@ -35,8 +35,8 @@ namespace AustinWeinman.ViewModel
         public Nullable<DateTime> Extension10DueDate { get; set; }
         public Nullable<DateTime> Extension11DueDate { get; set; }
         public Nullable<DateTime> Extension12DueDate { get; set; }
-        public string Fileupload { get; set; }
 
+        public string ProjectsName { get; set; }
         public string EscrowCompanyName { get; set; }
         public string TitleCompanyName { get; set; }
         public string SellersName { get; set; }
