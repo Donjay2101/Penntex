@@ -6,197 +6,243 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Agreementofsale</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LengthofInitialDDPeriod)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LengthofInitialDDPeriod)
-        </dd>
+<div class="row">
+    <div class="col-md-12">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Lengthofextention)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Lengthofextention)
-        </dd>
+        @using (Html.BeginForm("Edit", "Agreementofsales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+            <div class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-7">
+                        <input type="submit" value="Save" class="linkbtn pull-right" /><input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
+                        @Html.LabelFor(model => model.Notification, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.CheckBoxFor(model => model.Notification)
+                    </div>
+                </div>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="col-md-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numberofextension)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ProjectsName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.ProjectsName, new { @class = "form-control" })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Numberofextension)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extensioncost)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LengthofInitialDDPeriod, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.LengthofInitialDDPeriod, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extensioncost)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PurchasePrice)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Lengthofextention, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Lengthofextention, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PurchasePrice)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Numberofextension, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Numberofextension, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Seller)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extensioncost, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extensioncost, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Seller)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PurchasePrice, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.PurchasePrice, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EscrowCompany)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SellersName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.SellersName, new { @class = "form-control" })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.EscrowCompany)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titlecompany)
-        </dt>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EscrowCompanyName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.EscrowCompanyName, new { @class = "form-control" })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titlecompany)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TitleCompanyName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.TitleCompanyName, new { @class = "form-control" })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AOSEffectiveDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AOSEffectiveDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
 
-        <dd>
-            @Html.DisplayFor(model => model.AOSEffectiveDate)
-        </dd>
+                                @Html.DisplayFor(model => model.AOSEffectiveDate, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PurchaseDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PurchaseDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PurchaseDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NextPayment)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NextPayment)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension1DueDate)
-        </dt>
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.NextPayment, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.NextPayment, new { htmlAttributes = new { @class = "form-control date" } })
+                                    @Html.ValidationMessageFor(model => model.NextPayment, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension1DueDate)
-        </dd>
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension2DueDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension2DueDate)
-        </dd>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension3DueDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension1DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension1DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension3DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension2DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension2DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension4DueDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension3DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension3DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension4DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension4DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension4DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension5DueDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension5DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension5DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension5DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension6DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension6DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension6DueDate)
-        </dt>
+                    </div>
+                    <div class="col-md-6">
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension6DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension7DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension7DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension7DueDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension8DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension8DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension7DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension9DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension9DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension8DueDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension10DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension10DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension8DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension11DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension11DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension9DueDate)
-        </dt>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Extension12DueDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DisplayFor(model => model.Extension12DueDate, new { htmlAttributes = new { @class = "form-control date" } })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension9DueDate)
-        </dd>
+                        <div class="form-group">
+                            @Html.Label("Attachment", new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                <input type="file" name="uploads" multiple />
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension10DueDate)
-        </dt>
+                    </div>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension10DueDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension11DueDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension11DueDate)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Extension12DueDate)
-        </dt>
+        }
 
-        <dd>
-            @Html.DisplayFor(model => model.Extension12DueDate)
-        </dd>
 
-    </dl>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="row">
+    <div class="col-md-12">
+        <div class="upload-file">Uploaded Files</div>
+        <div id="dataContainer">
+            @Html.Action("GetUploadedFiles", new { ID = Model.ID })
+        </div>
+
+    </div>
+</div>

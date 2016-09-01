@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
 using AustinWeinman.ViewModel;
+using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
@@ -21,19 +22,29 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
-        public ActionResult GetData() 
+
+        public List<Loan> GetLoans(string name="")
         {
 
-            var data = db.Database.SqlQuery<LoanViewModel>("sp_GetLenderName ").ToList().Select(x => new Loan
+            var data = db.Database.SqlQuery<LoanViewModel>("sp_GetLenderName @Projects", new SqlParameter("@Projects", name)).ToList().Select(x => new Loan
             {
-                ID=x.ID,
+                ID = x.ID,
                 Lender = x.Lender,
                 LenderName = x.LenderName,
                 Project = x.Project,
                 ProjectName = x.ProjectName,
-                Amount = x.Amount
-                
+                Amount = x.Amount,
+                EndofInterestOnlyPeriod = x.EndofInterestOnlyPeriod
+
             }).ToList();
+
+            return data;
+        }
+
+
+        public ActionResult GetData(string name="") 
+        {
+            var data = GetLoans();
             return PartialView("_Loans", data);
         
         }
@@ -41,15 +52,19 @@ namespace AustinWeinman.Controllers
         // GET: Loans/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Loans/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Loan loan = db.Loans.Find(id);
-            if (loan == null)
+            Loan loan = GetLoans().FirstOrDefault(x => x.ID == id); if (loan == null)
+                if (loan == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(loan);
         }
 
@@ -69,7 +84,7 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Lender,Project,Amount")] Loan loan)
+        public ActionResult Create([Bind(Include = "ID,Lender,Project,Amount,EndofInterestOnlyPeriod")] Loan loan)
         {
 
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Loans/Index");
@@ -77,7 +92,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Loans.Add(loan);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
 
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Lenders(), "ID", "Name");
@@ -111,14 +126,14 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Lender,Project,Amount")] Loan loan)
+        public ActionResult Edit([Bind(Include = "ID,Lender,Project,Amount,EndofInterestOnlyPeriod")] Loan loan)
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Loans/Index");
             if (ModelState.IsValid)
             {
                 db.Entry(loan).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
 
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Lenders(), "ID", "Name");

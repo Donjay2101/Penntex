@@ -21,11 +21,11 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
-        public ActionResult GetData() 
+        public List<Seller> GetSellers()
         {
             var data = db.Database.SqlQuery<SellersViewModel>("sp_GetProjectName ").ToList().Select(x => new Seller
             {
-                ID=x.ID,
+                ID = x.ID,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Company = x.Company,
@@ -45,7 +45,15 @@ namespace AustinWeinman.Controllers
                 Groups = x.Groups,
                 Project = x.Project,
                 ProjectName = x.ProjectName
-            }).ToList(); 
+            }).ToList();
+
+            return data;
+        }
+
+
+        public ActionResult GetData() 
+        {
+            var data = GetSellers();
             return PartialView("_sellers", data);
         
         }
@@ -53,15 +61,19 @@ namespace AustinWeinman.Controllers
         // GET: Sellers/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Sellers/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Seller seller = db.Sellers.Find(id);
+            Seller seller = GetSellers().FirstOrDefault(x => x.ID == id);
             if (seller == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(seller);
         }
 
@@ -86,7 +98,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Sellers.Add(seller);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.ReturnUrl = returnUrl;
@@ -125,7 +137,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entry(seller).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.ReturnUrl = returnUrl;

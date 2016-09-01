@@ -24,10 +24,10 @@ namespace AustinWeinman.Controllers
         }
 
 
-        public ActionResult GetData(string name="")
-        {
 
-            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects @projects",new SqlParameter("@projects",name)).ToList().Select(x => new Project
+        public ActionResult GetData(string name = "")
+        {
+            var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects @projects", new SqlParameter("@projects", name)).ToList().Select(x => new Project
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -46,7 +46,7 @@ namespace AustinWeinman.Controllers
                 TrafficEngineerName = x.TrafficEngineerName,
                 Municipality = x.Municipality,
                 MunicipalityName = x.MunicipalityName,
-                StatusName=x.StatusName
+                StatusName = x.StatusName
             }).ToList();
 
             return PartialView("_Projects", data);            
@@ -129,7 +129,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Projects.Add(project);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);                
+                return Redirect(returnUrl);                
             }
             ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName");
             ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
@@ -187,7 +187,7 @@ namespace AustinWeinman.Controllers
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName", project.ProjectManager);
             ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName", project.RealStateManager);

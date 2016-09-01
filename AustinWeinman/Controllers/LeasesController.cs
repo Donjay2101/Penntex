@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AustinWeinman.Models;
 using AustinWeinman.ViewModel;
+using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
@@ -21,11 +22,12 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
-        public ActionResult GetData() 
+        public List<Lease> GetLeases(string name="")
         {
-            var data = db.Database.SqlQuery<LeaseViewModel>("sp_GetTenantName ").ToList().Select(x => new Lease
+
+            var data = db.Database.SqlQuery<LeaseViewModel>("sp_GetTenantName @Projects", new SqlParameter("@Projects", name)).ToList().Select(x => new Lease
             {
-                ID=x.ID,
+                ID = x.ID,
                 Project = x.Project,
                 ProjectName = x.ProjectName,
                 StartDate = x.StartDate,
@@ -37,24 +39,38 @@ namespace AustinWeinman.Controllers
                 Tenant = x.Tenant,
                 TenantName = x.TenantName,
                 EndDate = x.EndDate,
-                TurnOverDate = x.TurnOverDate                
+                TurnOverDate = x.TurnOverDate
 
             }).ToList();
+
+            return data;
+        }
+
+
+        public ActionResult GetData() 
+        {
+            var data = GetLeases();
             return PartialView("_Lease", data);
                 
         }
         // GET: Leases/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Leases/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lease lease = db.Leases.Find(id);
+
+            Lease lease = GetLeases().FirstOrDefault(x => x.ID == id);
+
             if (lease == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(lease);
         }
 
@@ -81,7 +97,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Leases.Add(lease);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");
@@ -120,7 +136,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entry(lease).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "Id", "Name");
             ViewBag.Tenants = new SelectList(db.Tenants.ToList(), "ID", "CompanyName");

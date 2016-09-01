@@ -21,36 +21,45 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
-        public ActionResult GetData() 
+        public List<Entity> GetEntities(string name="")
         {
 
             var data = db.Database.SqlQuery<EntityViewModel>("sp_GetEntityName").ToList().Select(x => new Entity
             {
-                ID=x.ID,
-            Project = x.Project,
-            ProjectName = x.ProjectName,
-            LegalName = x.LegalName,
-            EINNumber = x.EINNumber,
-            AccountingGLcode = x.AccountingGLcode,
-            AccountingJobCode = x.AccountingJobCode
-            }).ToList(); 
-            
+                ID = x.ID,
+                Project = x.Project,
+                ProjectName = x.ProjectName,
+                LegalName = x.LegalName,
+                EINNumber = x.EINNumber,
+                AccountingGLcode = x.AccountingGLcode,
+                AccountingJobCode = x.AccountingJobCode
+            }).ToList();
+
+            return data;
+
+        }
+
+        public ActionResult GetData() 
+        {
+            var data = GetEntities();
             return PartialView("_entity", data);
         }
 
         // GET: Entities/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Entities/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Entity entity = db.Entities.Find(id);
-            if (entity == null)
+            Entity Entities = GetEntities().FirstOrDefault(x => x.ID == id); if (Entities == null)
             {
                 return HttpNotFound();
             }
-            return View(entity);
+            ViewBag.ReturnUrl = returnUrl;
+            return View(Entities);
         }
 
         // GET: Entities/Create
@@ -75,7 +84,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entities.Add(entity);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
             ViewBag.ReturnUrl = returnUrl;
@@ -116,7 +125,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.Jobs = new SelectList(ShrdMaster.Instance.Projects(), "ID", "Name");
             ViewBag.ReturnUrl = returnUrl;

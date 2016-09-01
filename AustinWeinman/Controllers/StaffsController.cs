@@ -21,35 +21,39 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
+        public List<Staff> GetStaffs()
+        {
+            var data = db.Database.SqlQuery<StaffViewModel>("exec sp_getStaffs").ToList().Select(x => new Staff
+            {
+
+                Address1 = x.Address1,
+                Address2 = x.Address2,
+                City = x.City,
+                Company = x.Company,
+                Country = x.Country,
+                Email = x.Email,
+                FirstName = x.FirstName,
+                Group = x.Group,
+                HomePhone = x.HomePhone,
+                ID = x.ID,
+                Job = x.Job,
+                JobTitle = x.JobTitle,
+                LastName = x.LastName,
+                MobilePhone = x.MobilePhone,
+                Notes = x.Notes,
+                State = x.State,
+                WorkPhone = x.WorkPhone,
+                ZIPcode = x.ZIPcode
+            }).ToList();
+            return data;
+
+        }
 
         public ActionResult GetData() 
         {
 
-           // var data = db.Staffs.ToList();
-
-            var data = db.Database.SqlQuery<StaffViewModel>("exec sp_getStaffs").ToList().Select(x => new Staff { 
-            
-            Address1=x.Address1,
-            Address2=x.Address2,
-            City=x.City,
-            Company=x.Company,
-            Country=x.Country,
-            Email=x.Email,
-            FirstName=x.FirstName,
-            Group=x.Group,
-            HomePhone=x.HomePhone,
-            ID=x.ID,
-            Job=x.Job,
-            JobTitle=x.JobTitle,           
-            LastName=x.LastName,
-            MobilePhone=x.MobilePhone,
-            Notes=x.Notes,
-            State=x.State,
-            WorkPhone=x.WorkPhone,
-            ZIPcode=x.ZIPcode
-            }).ToList();
-
-                                                                        
+            // var data = db.Staffs.ToList();
+            var data = GetStaffs();                                                                        
             return PartialView("_Staffs", data);
         
         }
@@ -57,15 +61,19 @@ namespace AustinWeinman.Controllers
         // GET: Staffs/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Staffs/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Staff staff = db.Staffs.Find(id);
+            Staff staff = GetStaffs().FirstOrDefault(x => x.ID == id);
             if (staff == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(staff);
         }
 
@@ -93,7 +101,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Staffs.Add(staff);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(staff);
@@ -130,7 +138,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(staff);

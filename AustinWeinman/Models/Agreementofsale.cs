@@ -73,6 +73,8 @@ namespace AustinWeinman.Models
         [DisplayName("Extension 12 Due Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable< DateTime> Extension12DueDate { get; set; }
+        [DisplayName("Notification Turn Off")]
+        public Boolean Notification { get; set;}
        
 
         [NotMapped]

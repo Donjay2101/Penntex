@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AustinWeinman.Models;
 using AustinWeinman.ViewModel;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
@@ -23,11 +24,12 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
-        public ActionResult GetData() 
+
+        public List<Agreementofsale> GetAgreements(string name = "")
         {
-            var data = db.Database.SqlQuery<AgreementofsalesViewModel>("sp_vendors").ToList().Select(x => new Agreementofsale
+            var data = db.Database.SqlQuery<AgreementofsalesViewModel>("sp_vendors @Agreementofsales", new SqlParameter("@Agreementofsales", name)).ToList().Select(x => new Agreementofsale
             {
-                ID=x.ID,
+                ID = x.ID,
                 LengthofInitialDDPeriod = x.LengthofInitialDDPeriod,
                 Lengthofextention = x.Lengthofextention,
                 Numberofextension = x.Numberofextension,
@@ -38,7 +40,7 @@ namespace AustinWeinman.Controllers
                 SellersName = x.SellersName,
                 AOSEffectiveDate = x.AOSEffectiveDate,
                 PurchaseDate = x.PurchaseDate,
-                NextPayment = x.NextPayment,                
+                NextPayment = x.NextPayment,
                 Extension1DueDate = x.Extension1DueDate,
                 Extension2DueDate = x.Extension2DueDate,
                 Extension3DueDate = x.Extension3DueDate,
@@ -52,11 +54,20 @@ namespace AustinWeinman.Controllers
                 Extension11DueDate = x.Extension11DueDate,
                 Extension12DueDate = x.Extension12DueDate,
                 Project = x.Project,
+                Notification = x.Notification,
                 EscrowCompany = x.EscrowCompany,
                 EscrowCompanyName = x.EscrowCompanyName,
                 Titlecompany = x.Titlecompany,
-                TitleCompanyName = x.TitleCompanyName                
+                TitleCompanyName = x.TitleCompanyName
             }).ToList();
+
+            return data;
+        }
+
+        public ActionResult GetData() 
+        {
+
+            var data = GetAgreements();
             return PartialView("_Agreementofsale", data);
         
         }
@@ -64,15 +75,21 @@ namespace AustinWeinman.Controllers
         // GET: Agreementofsales/Details/5 
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Agreementofsale agreementofsale = db.Agreementofsales.Find(id);
+
+            Agreementofsale agreementofsale = GetAgreements().FirstOrDefault(x => x.ID == id);
+
             if (agreementofsale == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(agreementofsale);
         }
 
@@ -92,7 +109,7 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Project,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads )
+        public ActionResult Create([Bind(Include = "ID,Project,Notification,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads )
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
 
@@ -100,7 +117,8 @@ namespace AustinWeinman.Controllers
             {
                 db.Agreementofsales.Add(agreementofsale);
                 db.SaveChanges();
-                
+
+               
 
                     foreach (HttpPostedFileBase upload in uploads)
                     {
@@ -149,7 +167,7 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Project,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads)
+        public ActionResult Edit([Bind(Include = "ID,Project,Notification,LengthofInitialDDPeriod,Lengthofextention,Numberofextension,Extensioncost,PurchasePrice,Seller,EscrowCompany,Titlecompany,AOSEffectiveDate,PurchaseDate,NextPayment,Extension1DueDate,Extension2DueDate,Extension3DueDate,Extension4DueDate,Extension5DueDate,Extension6DueDate,Extension7DueDate,Extension8DueDate,Extension9DueDate,Extension10DueDate,Extension11DueDate,Extension12DueDate")] Agreementofsale agreementofsale, HttpPostedFileBase[] uploads)
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Agreementofsales/Index");
 
@@ -219,8 +237,7 @@ namespace AustinWeinman.Controllers
         [HttpPost]
         public ActionResult DeleteFiles(int ID)
         {
-            var files = db.Uploads.Find(ID);
-            
+            var files = db.Uploads.Find(ID);            
                 db.Uploads.Remove(files);
                 db.SaveChanges();
             

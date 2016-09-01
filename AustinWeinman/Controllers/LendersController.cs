@@ -31,6 +31,7 @@ namespace AustinWeinman.Controllers
         // GET: Lenders/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
 
             if (id == null)
             {
@@ -41,6 +42,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(lender);
         }
 
@@ -64,7 +67,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Lenders.Add(lender);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(lender);
@@ -100,7 +103,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entry(lender).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(lender);

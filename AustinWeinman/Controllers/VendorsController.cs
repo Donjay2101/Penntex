@@ -29,6 +29,8 @@ namespace AustinWeinman.Controllers
         // GET: Vendors/Details/5
         public ActionResult Details(int? id)
         {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Vendors/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +41,8 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ReturnUrl = returnUrl;
+
             return View(vendor);
         }
 
@@ -63,7 +67,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Vendors.Add(vendor);
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(vendor);
@@ -101,7 +105,7 @@ namespace AustinWeinman.Controllers
             {
                 db.Entry(vendor).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction(returnUrl);
+                return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View(vendor);
