@@ -81,7 +81,7 @@
         <div id="close-box"> 
             <div class="row">
                 <div class="col-md-12">
-                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-remove" style="cursor:pointer" id="close"></span>
                 </div>
             </div>           
         </div>
@@ -135,6 +135,10 @@
     <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    $(document).on('click', '#close', function () {
+        $('#overlay2').css('display', 'none');
     })
     </script>
 
