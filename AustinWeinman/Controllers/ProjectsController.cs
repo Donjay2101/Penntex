@@ -23,10 +23,9 @@ namespace AustinWeinman.Controllers
             return View();
         }
 
-
-
-        public ActionResult GetData(string name = "")
+        public List<Project> GetProjects(string name="")
         {
+
             var data = db.Database.SqlQuery<ProjectsViewModel>("sp_GetProjects @projects", new SqlParameter("@projects", name)).ToList().Select(x => new Project
             {
                 Id = x.Id,
@@ -48,7 +47,16 @@ namespace AustinWeinman.Controllers
                 MunicipalityName = x.MunicipalityName,
                 StatusName = x.StatusName
             }).ToList();
+            return data;
 
+        }
+
+
+        public ActionResult GetData()
+        {
+
+            var data = GetProjects();
+           
             return PartialView("_Projects", data);            
         }
 
@@ -91,7 +99,7 @@ namespace AustinWeinman.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Project project = db.Projects.Find(id);
+            Project project = GetProjects().FirstOrDefault(x => x.Id == id);
             if (project == null)
             {
                 return HttpNotFound();
