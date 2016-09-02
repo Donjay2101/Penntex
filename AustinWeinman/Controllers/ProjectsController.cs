@@ -52,7 +52,7 @@ namespace AustinWeinman.Controllers
         }
 
 
-        public ActionResult GetData()
+        public ActionResult GetData(string name="")
         {
 
             var data = GetProjects();
