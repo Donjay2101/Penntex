@@ -78,6 +78,7 @@ namespace AustinWeinman.Controllers
         {
 
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -96,7 +97,7 @@ namespace AustinWeinman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Lender lender)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Lender lender, string Next)
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
             if (ModelState.IsValid)
@@ -105,6 +106,9 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return Redirect(returnUrl);
             }
+
+           
+
             ViewBag.ReturnUrl = returnUrl;
             return View(lender);
         }
