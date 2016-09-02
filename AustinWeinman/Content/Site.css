@@ -56,7 +56,7 @@ textarea {
     position: absolute;
     margin-top: -27px;
 }
-    button#search-btn {
+    button#search-btn ,#cancel-btn{
     border: none;
     background: transparent;
 }
@@ -133,7 +133,7 @@ textarea {
   }
   span.glyphicon{
     padding-right: 10px;
-    font-size: 10px;
+    font-size: 12px;
 }
   table.grid-table tr.grid-row-selected td {
     background:#fff8ad!important;
