@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="red-color">Details</h2>
 
 <div>
     <h4>Architect</h4>
@@ -15,7 +15,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Name, new { @class = "displayname" })
         </dd>
 
     </dl>
