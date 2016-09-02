@@ -55,7 +55,7 @@ namespace AustinWeinman.Controllers
         public ActionResult GetData(string name="")
         {
 
-            var data = GetProjects();
+            var data = GetProjects(name);
            
             return PartialView("_Projects", data);            
         }

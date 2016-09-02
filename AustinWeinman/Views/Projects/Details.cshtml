@@ -165,7 +165,11 @@
 
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.StoreOpenDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <label class="control-label col-md-4">
+                                Store Open Date:
+                            </label>
+
+                            @Html.LabelFor(model => model.StoreOpenDate, htmlAttributes: new { @class = "" })
                             <div class="col-md-8">
                                 @Html.DisplayFor(model => model.StoreOpenDate, new { htmlAttributes = new { @class = "form-control date" } })
                             </div>

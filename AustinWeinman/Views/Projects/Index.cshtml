@@ -39,13 +39,15 @@
     
     <script>
         $(document).ready(function () {
-
+            
             $("#search-btn").click(function () {
-                
+                debugger;
+                var searchval = $("#search").val();
+                console.log(searchval);
                 $.ajax({
 
                     type: "GET",
-                    url: "/Projects/GetData?name=" + $("#search").val(),
+                    url: "/Projects/GetData?name="+searchval,
                     success: function (data)
                     {
                         $('#overlay').css('display','none');
