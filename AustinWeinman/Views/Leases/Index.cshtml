@@ -13,7 +13,13 @@
             <span class="input-group-addon" id="btn" style="cursor:pointer">
                 <button type="button" id="search-btn"><i class="fa fa-search"></i></button>
             </span>
-        </div>
+      
+            <span class="input-group-addon" id="cancelbtn" style="cursor:pointer">
+                <button type="button" id="cancel-btn"><i class="fa fa-remove"></i></button>
+            </span>
+
+          </div>
+      
     </div>
 </div>
 <hr />
@@ -59,5 +65,32 @@
 
     </script>
 }
+
+<script>
+    $(document).ready(function () {
+
+        $("#cancelbtn").click(function () {
+
+            $.ajax({
+
+                type: "GET",
+                url: "/Leases/GetData?name=" + "",
+                success: function (data)
+                {
+                    $('#overlay').css('display', 'none');
+                    $('#dataContainer').html(data);
+                },
+                error: function () { }
+
+
+
+            })
+
+        })
+
+    })
+
+
+</script>
 
 

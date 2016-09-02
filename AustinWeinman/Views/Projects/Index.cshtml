@@ -8,15 +8,20 @@
         <a href="#" onclick="goToCreate('/Projects/Create')" class="linkbtn"><span class="glyphicon glyphicon-plus space" aria-hidden="true"></span>Create new</a>
     </div>
     <div class="col-md-3 col-md-offset-6">
-        <div class="input-group">
+            <div class="input-group">            
             <input type="text" id="search" placeholder="Search Project" style="height:32px!important" class="form-control">
             <span class="input-group-addon" id="btn" style="cursor:pointer">
-                <button type="button" id="search-btn" ><i class="fa fa-search"></i></button>
+                <button type="button" id="search-btn" ><i class="fa fa-search"></i></button> 
             </span>
-        </div>
-    </div>
+                <span class="input-group-addon" id="cancelbtn" style="cursor:pointer">
+                  <button type="button" id="cancel-btn"><i class="fa fa-remove"></i></button>
+
+                </span>
+              
+        </div>        
+     </div>
 </div>
-<hr />
+<hr/>
 <div id="dataContainer">
 
     @*@using (Html.BeginForm())
@@ -62,7 +67,31 @@
 
         })
 
+</script>
+    }
+<script>
+    $(document).ready(function () {
+
+        $("#cancelbtn").click(function () {
+
+            $.ajax({
+
+                type: "GET",
+                url: "/Projects/GetData?name=" + "",
+                success: function (data)
+                {
+                    $('#overlay').css('display', 'none');
+                    $('#dataContainer').html(data);
+                },
+                error: function () { }
+
+
+
+            })
+
+        })
+
+    })
 
 
 </script>
-    }
