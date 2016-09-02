@@ -35,7 +35,7 @@
                 $.ajax({
 
                     type: "GET",
-                    url: "/Loans/GetLoans?name=" + $("#search").val(),
+                    url: "/Loans/GetData?name=" + $("#search").val(),
                     success: function (data)
                     {
                         $('#overlay').css('display','none');
