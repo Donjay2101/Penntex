@@ -22,7 +22,7 @@ namespace AustinWeinman.ViewModel
         public Nullable<int> Titlecompany { get; set; }
         public Nullable<DateTime> AOSEffectiveDate { get; set; }
         public Nullable<DateTime> PurchaseDate { get; set; }
-        public Nullable<DateTime> NextPayment { get; set; }
+        
         public Nullable<DateTime> Extension1DueDate { get; set; }
         public Nullable<DateTime> Extension2DueDate { get; set; }
         public Nullable<DateTime> Extension3DueDate { get; set; }

@@ -40,7 +40,6 @@ namespace AustinWeinman.Controllers
                 SellersName = x.SellersName,
                 AOSEffectiveDate = x.AOSEffectiveDate,
                 PurchaseDate = x.PurchaseDate,
-                NextPayment = x.NextPayment,
                 Extension1DueDate = x.Extension1DueDate,
                 Extension2DueDate = x.Extension2DueDate,
                 Extension3DueDate = x.Extension3DueDate,
@@ -66,7 +65,6 @@ namespace AustinWeinman.Controllers
 
         public ActionResult GetData() 
         {
-
             var data = GetAgreements();
             return PartialView("_Agreementofsale", data);
         
@@ -88,6 +86,7 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.ReturnUrl = returnUrl;
 
             return View(agreementofsale);

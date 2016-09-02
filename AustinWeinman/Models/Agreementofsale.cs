@@ -34,9 +34,6 @@ namespace AustinWeinman.Models
         [DisplayName("Purchase Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<DateTime> PurchaseDate { get; set; }
-        [DisplayName("Next Payment")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
-        public Nullable<DateTime> NextPayment { get; set; }
         [DisplayName("Extension 1 Due Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         public Nullable<DateTime> Extension1DueDate { get; set; }
