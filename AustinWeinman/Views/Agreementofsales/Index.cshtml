@@ -34,7 +34,7 @@
                 $.ajax({
 
                     type: "GET",
-                    url: "/Agreementofsales/GetAgreements?name=" + $("#search").val(),
+                    url: "/Agreementofsales/GetData?name=" + $("#search").val(),
                     success: function (data)
                     {
                         $('#overlay').css('display','none');

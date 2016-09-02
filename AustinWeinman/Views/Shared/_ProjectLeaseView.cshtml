@@ -8,8 +8,8 @@
 
     columns.Add(c => c.TenantName).Titled("Tenant");
     columns.Add(c => c.TurnOverDate).Titled("Turn Over Date").Format("{0:MM/dd/yyyy}");
-    columns.Add(c => c.MonthlyLease).Titled("Monthly Lease Amount");
-    columns.Add(c => c.AnnulaLease).Titled("Annual Lease Amount");    
+    columns.Add(c => c.MonthlyLease).Titled("Monthly Lease Amount").Format("{0:c}"); ;
+    columns.Add(c => c.AnnulaLease).Titled("Annual Lease Amount").Format("{0:c}"); ;
 }).WithPaging(25).Sortable().Filterable().WithMultipleFilters()
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/gridmvc.min.js"></script>

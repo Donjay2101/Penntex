@@ -44,7 +44,7 @@ namespace AustinWeinman.Controllers
 
         public ActionResult GetData(string name="") 
         {
-            var data = GetLoans();
+            var data = GetLoans(name);
             return PartialView("_Loans", data);
         
         }

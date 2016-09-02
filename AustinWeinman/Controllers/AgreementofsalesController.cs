@@ -25,7 +25,7 @@ namespace AustinWeinman.Controllers
         }
 
 
-        public List<Agreementofsale> GetAgreements(string name = "")
+        public List<Agreementofsale> GetAgreements(string name="")
         {
             var data = db.Database.SqlQuery<AgreementofsalesViewModel>("sp_vendors @Agreementofsales", new SqlParameter("@Agreementofsales", name)).ToList().Select(x => new Agreementofsale
             {
@@ -63,9 +63,10 @@ namespace AustinWeinman.Controllers
             return data;
         }
 
-        public ActionResult GetData() 
+        public ActionResult GetData(string name="") 
         {
-            var data = GetAgreements();
+
+            var data = GetAgreements(name);
             return PartialView("_Agreementofsale", data);
         
         }

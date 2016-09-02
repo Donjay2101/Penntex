@@ -47,9 +47,9 @@ namespace AustinWeinman.Controllers
         }
 
 
-        public ActionResult GetData() 
+        public ActionResult GetData(string name="") 
         {
-            var data = GetLeases();
+            var data = GetLeases(name);
             return PartialView("_Lease", data);
                 
         }
