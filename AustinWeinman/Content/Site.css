@@ -242,3 +242,11 @@ textarea {
     text-align: right;
     position: absolute;
 }
+  .red-color{      
+    color: #973635;
+  }
+  .displayname{
+    font-size: 12px;
+    margin-top: 7px;
+}
+  

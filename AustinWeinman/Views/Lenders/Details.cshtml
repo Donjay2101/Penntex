@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="red-color">Details</h2>
 
 <div class="row">
     <div class="col-md-12">
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control displayname" } })
                     </div>
                 </div>
             </div>
