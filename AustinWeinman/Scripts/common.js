@@ -47,29 +47,23 @@ function goToPrevious(url)
 
 function getURL()
 {
-    var arr = window.location.href.split("/");
-    var baseURl = "http://";
-    for (i = 2; i <3; i++)
-    {
-        baseURl += arr[i];
-    }
-
-    return baseURl+"/";
-}
-
-function goToCreate(url) {
-
-    //debugger;
     var cururl = window.location.href;
     var comidx = cururl.split('/');
-    var returnUrl="";
+    var returnUrl = "";
     for (i = 3; i < comidx.length; i++) {
         if (comidx[i] != "#" && comidx[i] != "") {
 
             returnUrl += "/" + comidx[i];
         }
 
-    }
+    } return returnUrl;
+}
+
+
+function goToCreate(url) {
+
+    //debugger;
+    var returnUrl=getURL();
     var newurl = "";
     if (url.indexOf('?') > 0) {
         newurl = url + "&returnUrl=" + returnUrl;;
