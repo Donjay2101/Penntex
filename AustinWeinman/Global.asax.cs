@@ -25,6 +25,16 @@ namespace AustinWeinman
 
         protected void Application_BeginRequest()
         {
+            string url = HttpContext.Current.Request.Url.AbsolutePath;
+            if(url.ToUpper().Contains("EDIT") && url.ToUpper().Contains("DELETE"))
+            {                
+                if(!ShrdMaster.Instance.IsAdmin("Admin"))
+                {
+                    Server.Transfer("/Acount/Login");
+                }                
+            }
+
+            //url
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
             Response.Cache.SetNoStore();

@@ -51,6 +51,7 @@ namespace AustinWeinman.Models
         public string FullName { get; set; }
 
         [NotMapped]
+        [DisplayName("Job Title")]
         public string JobTitle { get; set; }
 
     }

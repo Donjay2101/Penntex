@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -11,13 +12,14 @@ namespace AustinWeinman.Models
     {
         public int ID { get; set; }
         public Nullable<int> Project { get; set; }
-        [DataType("Legal Name")]
+        
+        [DisplayName("Legal Name")]
         public string LegalName { get; set; }
-        [DataType("EIN Number")]
+        [DisplayName("EIN Number")]
         public string EINNumber { get; set; }
-        [DataType("Accounting GL Code")]
+        [DisplayName("Accounting GL Code")]
         public string AccountingGLcode { get; set; }
-        [DataType("Accounting Job Code")]
+        [DisplayName("Accounting Job Code")]
         public string AccountingJobCode { get; set; }
 
         [NotMapped]
