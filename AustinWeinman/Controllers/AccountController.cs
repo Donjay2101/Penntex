@@ -13,11 +13,12 @@ using System.Web.Security;
 
 namespace AustinWeinman.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private PennTexDbContext db = new PennTexDbContext(); 
 
         public AccountController()
         {
@@ -76,9 +77,11 @@ namespace AustinWeinman.Controllers
 
             if(ShrdMaster.Instance.AuthenticateUser(model.Username,model.Password))
             {
-                User user = new Models.User();
-                user.Username = model.Username;
-                user.Password = model.Password;
+                var user = db.Users.FirstOrDefault(x => x.Username == model.Username);
+                //User user = new Models.User();
+                //user.Username = model.Username;
+                //user.Password = model.Password;
+                Session["User"] = user;
                 SetupFormsAuthTicket(user,false);
                 return RedirectToLocal(returnUrl);
             }

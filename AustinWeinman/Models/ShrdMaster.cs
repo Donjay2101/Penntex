@@ -48,6 +48,24 @@ namespace AustinWeinman.Models
         
         }
 
+        public bool IsAdmin(string username)
+        {
+            User user;
+
+            
+                user = db.Users.FirstOrDefault(x => x.Username == username) ;
+                var userRoles = db.UserRoles.Where(x => x.UserID == user.ID);
+                var admin = userRoles.Where(x => x.RoleID == 1);
+                if(admin.Count()>0)
+                {
+                    return true;
+                }
+            
+            return false;
+
+            
+        }
+
         public List<Upload> uploads()
         {
             var list = db.Uploads.ToList().Select(x => new Upload

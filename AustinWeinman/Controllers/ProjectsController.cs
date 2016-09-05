@@ -12,12 +12,13 @@ using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles ="Admin,User")]
     public class ProjectsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
         string returnUrl;
         // GET: Projects
+        
         public ActionResult Index()
         {
             return View();
@@ -92,6 +93,7 @@ namespace AustinWeinman.Controllers
         //}
 
         // GET: Projects/Details/5
+        [Authorize(Roles ="User")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -108,6 +110,7 @@ namespace AustinWeinman.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             returnUrl = ShrdMaster.Instance.SetReturnUrl("/Projects/Index");
@@ -154,6 +157,7 @@ namespace AustinWeinman.Controllers
         }
 
         // GET: Projects/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             //1

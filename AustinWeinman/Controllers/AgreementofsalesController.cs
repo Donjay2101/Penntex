@@ -13,6 +13,7 @@ using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AgreementofsalesController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
