@@ -10,6 +10,8 @@ using AustinWeinman.Models;
 
 namespace AustinWeinman.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
+
     public class TenantsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();

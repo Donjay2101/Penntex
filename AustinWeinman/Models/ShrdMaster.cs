@@ -52,7 +52,7 @@ namespace AustinWeinman.Models
         {
             User user;
 
-            
+            username = HttpContext.Current.User.Identity.Name;
                 user = db.Users.FirstOrDefault(x => x.Username == username) ;
                 var userRoles = db.UserRoles.Where(x => x.UserID == user.ID);
                 var admin = userRoles.Where(x => x.RoleID == 1);
@@ -146,6 +146,10 @@ namespace AustinWeinman.Models
 
             }).ToList();
 
+            //ConstructionType con = new ConstructionType();
+            //con.ID = 0;
+            //con.Name = "Others";
+            //list.Add(con);
             return list;
         
         

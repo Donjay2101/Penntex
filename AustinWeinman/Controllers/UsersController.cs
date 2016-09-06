@@ -10,143 +10,147 @@ using AustinWeinman.Models;
 
 namespace AustinWeinman.Controllers
 {
-
-    [Authorize(Roles = "Admin,User")]
-    public class LendersController : Controller
+    [Authorize(Roles = "Admin")]
+    public class UsersController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
-        string returnUrl;
-        // GET: Lenders
+        string _returnUrl;
+
+        public UsersController()
+        {
+            _returnUrl = ShrdMaster.Instance.SetReturnUrl("/Users/Index");
+        }
+        // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return View(db.Users.ToList());
         }
 
-        public ActionResult GetData() 
+        public ActionResult GetData()
         {
-            var data = db.Lenders.ToList();
-            return PartialView("_Lenders", data);
-        
-        
+            var data = db.Users.ToList();
+            return PartialView("_Users", data);
         }
 
-        // GET: Lenders/Details/5
+        // GET: Admin/Details/5
         public ActionResult Details(int? id)
         {
-            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
-
+            ViewBag.ReturnUrl = _returnUrl;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lender lender = db.Lenders.Find(id);
-            if (lender == null)
+
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ReturnUrl = returnUrl;
-
-            return View(lender);
+            return View(user);
         }
 
-        // GET: Lenders/Create
+        // GET: Admin/Create
         public ActionResult Create()
         {
-            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = _returnUrl;
             return View();
         }
 
-        // POST: Lenders/Create
+        // POST: Admin/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Lender lender)
+        public ActionResult Create(RegisterViewModel model)
         {
-            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
+            ViewBag.ReturnUrl = _returnUrl;
             if (ModelState.IsValid)
             {
-                db.Lenders.Add(lender);
+                AustinWeinman.Models.User user = new Models.User();
+                user.Email = model.Email;
+                user.Username = model.Username;
+                user.Password = model.Password;
+                user.Status = true;
+                db.Users.Add(user);
                 db.SaveChanges();
-                return Redirect(returnUrl);
+
+                UserRole role = new UserRole();
+                role.RoleID = 2;
+                role.UserID = user.ID;
+                db.SaveChanges();
+                return Redirect(_returnUrl);
             }
-            ViewBag.ReturnUrl = returnUrl;
-            return View(lender);
+
+            return View(model);
         }
 
-        // GET: Lenders/Edit/5
+        // GET: Admin/Edit/5
         public ActionResult Edit(int? id)
         {
-
-            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
-
+            ViewBag.ReturnUrl = _returnUrl;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lender lender = db.Lenders.Find(id);
-            if (lender == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ReturnUrl = returnUrl;
-            return View(lender);
+            return View(user);
         }
 
-        // POST: Lenders/Edit/5
+        // POST: Admin/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Lender lender, string Next)
+        public ActionResult Edit([Bind(Include = "ID,Username,Password,Email")] User model)
         {
-            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Lenders/Index");
+            ViewBag.ReturnUrl = _returnUrl;
             if (ModelState.IsValid)
             {
-                db.Entry(lender).State = EntityState.Modified;
+
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
-                return Redirect(returnUrl);
+                return Redirect(_returnUrl);
             }
-
-           
-
-            ViewBag.ReturnUrl = returnUrl;
-            return View(lender);
+            return View(model);
         }
 
-        // GET: Lenders/Delete/5
+        // GET: Admin/Delete/5
         //public ActionResult Delete(int? id)
         //{
         //    if (id == null)
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Lender lender = db.Lenders.Find(id);
-        //    if (lender == null)
+        //    User user = db.Users.Find(id);
+        //    if (user == null)
         //    {
         //        return HttpNotFound();
         //    }
-        //    return View(lender);
+        //    return View(user);
         //}
 
-        //// POST: Lenders/Delete/5
+        // POST: Admin/Delete/5
         //[HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
         //public ActionResult DeleteConfirmed(int id)
         //{
-        //    Lender lender = db.Lenders.Find(id);
-        //    db.Lenders.Remove(lender);
+        //    User user = db.Users.Find(id);
+        //    db.Users.Remove(user);
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            Lender project = db.Lenders.Find(id);
-            db.Lenders.Remove(project);
+            User usr = db.Users.Find(id);
+            db.Users.Remove(usr);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(_returnUrl);
         }
 
         protected override void Dispose(bool disposing)

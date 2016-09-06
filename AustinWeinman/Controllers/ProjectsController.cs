@@ -19,6 +19,11 @@ namespace AustinWeinman.Controllers
         string returnUrl;
         // GET: Projects
         
+
+        public ProjectsController()
+        {
+            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Projects/Index");
+        }
         public ActionResult Index()
         {
             return View();
@@ -113,18 +118,8 @@ namespace AustinWeinman.Controllers
         [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
-            returnUrl = ShrdMaster.Instance.SetReturnUrl("/Projects/Index");
-            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName");
-            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
-            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
-            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
-            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
-            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
-            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name");
-            ViewBag.ReturnUrl = returnUrl;
+            SetViewBags();
+            
             return View();
         }
 
@@ -142,17 +137,7 @@ namespace AustinWeinman.Controllers
                 db.SaveChanges();
                 return Redirect(returnUrl);                
             }
-            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName");
-            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
-            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
-            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
-            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
-            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name");
-            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
-            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name");
-            ViewBag.ReturnUrl = returnUrl;
+            SetViewBags();
             return View(project);
         }
 
@@ -171,16 +156,7 @@ namespace AustinWeinman.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName",project.ProjectManager);
-            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName", project.RealStateManager);
-            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName",project.Sitesuperintendent);
-            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName",project.ParaLegal);
-            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company",project.CivilEngineer);
-            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company",project.Municipality);
-            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company",project.TrafficEngineer);
-            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name",project.Architect);
-            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name",project.ConstructionType);
-            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name",project.Status);
+            SetViewBags();
             //2
             ViewBag.ReturnUrl = returnUrl;
             return View(project);
@@ -201,17 +177,7 @@ namespace AustinWeinman.Controllers
 
                 return Redirect(returnUrl);
             }
-            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName", project.ProjectManager);
-            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName", project.RealStateManager);
-            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName", project.Sitesuperintendent);
-            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName", project.ParaLegal);
-            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company", project.CivilEngineer);
-            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company", project.Municipality);
-            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company", project.TrafficEngineer);
-            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Architects(), "ID", "Name", project.Architect);
-            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name", project.ConstructionType);
-            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name", project.Status);
-            ViewBag.ReturnUrl = returnUrl;
+            SetViewBags();
             return View(project);
         }
 
@@ -284,6 +250,22 @@ namespace AustinWeinman.Controllers
             db.Projects.Remove(project);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public void SetViewBags()
+        {
+            ViewBag.ProjectManager = new SelectList(ShrdMaster.Instance.ProjectManagers(), "ID", "FullName");
+            ViewBag.RealEstate = new SelectList(ShrdMaster.Instance.RealEstates(), "ID", "FullName");
+            ViewBag.Sitesuperintendent = new SelectList(ShrdMaster.Instance.Sitesuperintendents(), "ID", "FullName");
+            ViewBag.Paralegal = new SelectList(ShrdMaster.Instance.Paralegals(), "ID", "FullName");
+            ViewBag.CivilEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Municipality = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.TrafficEngineer = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.Architect = new SelectList(ShrdMaster.Instance.Vendors(), "ID", "Company");
+            ViewBag.ConstructionType = new SelectList(ShrdMaster.Instance.ConstructionTypes(), "ID", "Name");
+            ViewBag.Status = new SelectList(db.Status.ToList(), "ID", "Name");
+            ViewBag.ReturnUrl = returnUrl;
         }
 
         protected override void Dispose(bool disposing)
