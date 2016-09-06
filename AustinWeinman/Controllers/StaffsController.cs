@@ -11,6 +11,7 @@ using AustinWeinman.ViewModel;
 
 namespace AustinWeinman.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class StaffsController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();

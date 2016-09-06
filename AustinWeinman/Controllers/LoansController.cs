@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 
 namespace AustinWeinman.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class LoansController : Controller
     {
         private PennTexDbContext db = new PennTexDbContext();
