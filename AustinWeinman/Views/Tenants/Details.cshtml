@@ -1,8 +1,10 @@
 ﻿@model AustinWeinman.Models.Tenant
+displayname
 @{
     ViewBag.Title = "Details";
 }
 
+@*<h2 class="red-color">Details</h2>*@
 
 <div class="row">
     <div class="col-md-12">
@@ -16,7 +18,7 @@
             <div class="form-horizontal">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-8">
-                      <input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
+                     <input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
                     </div>
                 </div>
                 <hr />
@@ -25,48 +27,43 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label col-md-4">Company Name:</label>
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Contact Person:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.ContactPerson, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Email:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Contact Phone:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.ContactPhone, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.ContactPhone, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Address:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-4">City:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.City, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
@@ -74,42 +71,37 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">State:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.State, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Zip Code:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Country:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.Country, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Webpage:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.Webpage, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.Webpage, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.Webpage, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-4">Notes:</label>
-
-                            <div class="col-md-8">
-                                @Html.DisplayFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control displayname" } })
+                            @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8  displayname">
+                                @Html.DisplayFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                     </div>
