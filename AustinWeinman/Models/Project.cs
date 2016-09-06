@@ -66,22 +66,32 @@ namespace AustinWeinman.Models
 
 
         [NotMapped]
+
+        [DisplayName("Project Manager")]
         public string ProjectManagerName { get; set; }
         [NotMapped]
+        [DisplayName("Real Estate Manager")]
         public string RealStateManagerName { get; set; }
         [NotMapped]
+        [DisplayName("Paraleagl")]
         public string ParaLegalName { get; set; }
         [NotMapped]
+        [DisplayName("Site Superintendent")]
         public string SiteSuperintendentName { get; set; }
         [NotMapped]
+        [DisplayName("Civil Engineer")]
         public string CivilEngineerName { get; set; }
         [NotMapped]
+        [DisplayName("Trafic Engineer")]
         public string TrafficEngineerName { get; set; }
         [NotMapped]
+        [DisplayName("Municipality")]
         public string MunicipalityName { get; set; }
         [NotMapped]
+        [DisplayName("Architect")]
         public string ArchitectName { get; set; }
         [NotMapped]
+        [DisplayName("Status")]
         public string StatusName { get; set; }
     
     

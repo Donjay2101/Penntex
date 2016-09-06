@@ -40,8 +40,10 @@ namespace AustinWeinman.Models
         public Nullable<DateTime> TurnOverDate { get; set; }
 
         [NotMapped]
+        [DisplayName("Tenant")]
         public string TenantName { get; set; }
         [NotMapped]
+        [DisplayName("Project")]
         public string ProjectName { get; set; }
     }
 }

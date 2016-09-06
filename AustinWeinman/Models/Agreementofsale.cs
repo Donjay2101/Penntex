@@ -75,12 +75,16 @@ namespace AustinWeinman.Models
        
 
         [NotMapped]
+        [DisplayName("Project")]
         public string ProjectsName { get; set; }
         [NotMapped]
+        [DisplayName("Escrow Company")]
         public string EscrowCompanyName { get; set;}
         [NotMapped]
+        [DisplayName("Title of Company")]
         public string TitleCompanyName { get; set; }
         [NotMapped]
+        [DisplayName("Seller")]
         public string SellersName { get; set; }
 
           }

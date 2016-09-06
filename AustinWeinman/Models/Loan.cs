@@ -19,8 +19,10 @@ namespace AustinWeinman.Models
         public Nullable<DateTime> EndofInterestOnlyPeriod { get; set;}
 
         [NotMapped]
+        [DisplayName("Lender")]
         public string LenderName { get; set; }
         [NotMapped]
+        [DisplayName("Project")]
         public string ProjectName { get; set; }
 
 

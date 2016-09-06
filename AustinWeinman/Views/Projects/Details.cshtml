@@ -15,11 +15,16 @@
 
             <div class="form-horizontal">
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-8">
-                     <input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
+                    <div class="col-md-4">
+                        <input type="button" onclick="goToProjectsDetails(@Model.Id,'Previous')" value="Previous" class="linkbtn" />
+                        <input type="button" onclick="goToProjectsDetails(@Model.Id,'Next')" value="Next" class="linkbtn" />
+                    </div>
+                    <div class="col-md-4 col-md-offset-4">
+                        <input type="submit" value="Save" class="linkbtn pull-right" /><input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
                     </div>
                 </div>
                 <hr />
+                
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="row">
                     <div class="col-md-4">
@@ -295,6 +300,40 @@
                     break;
             }
         });
+
+        function goToProjectsDetails(id,direction)
+        {
+
+            if(direction.toUpperCase()=="NEXT")
+            {
+                id=id+1;       
+            }
+            else
+            {
+                id=id-1;                    
+            }
+            
+            if(id>0)
+            {
+                // debugger;
+                var url=window.location.href;
+                var returnUrl="";
+                var urlarr=url.split('&');
+                for(i=0;i<urlarr.length;i++)
+                {
+                    if(urlarr[i].includes('returnUrl'))
+                    {
+                        returnUrl=urlarr[i];
+                        break;
+                    }
+
+                }
+
+
+                window.location.href='/Projects/details?id='+id+'&'+returnUrl;
+                //goToCreate(");                        
+            }
+        }
     </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

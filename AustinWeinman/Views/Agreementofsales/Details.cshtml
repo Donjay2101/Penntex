@@ -20,7 +20,23 @@
                     <div class="col-md-5 col-md-offset-7">
                       <input type="button" value="Back to List" class="linkbtn  pull-right" onclick="goToPrevious('@ViewBag.ReturnUrl')" />
                         @Html.LabelFor(model => model.Notification, htmlAttributes: new { @class = "control-label col-md-4" })
-                        @Html.CheckBoxFor(model => model.Notification)
+
+                        @if (Model.Notification.HasValue)
+                        {
+                            if (Model.Notification.Value)
+                            {
+                                <input type="checkbox" disabled checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" disabled checked="checked" />
+                            }
+
+                        }
+                        
+
+
+
                     </div>
                 </div>
                 <hr />

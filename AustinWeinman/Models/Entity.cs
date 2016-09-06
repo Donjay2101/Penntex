@@ -23,6 +23,7 @@ namespace AustinWeinman.Models
         public string AccountingJobCode { get; set; }
 
         [NotMapped]
+        [DisplayName("Project")]
         public string ProjectName { get; set; }
     }
 }
